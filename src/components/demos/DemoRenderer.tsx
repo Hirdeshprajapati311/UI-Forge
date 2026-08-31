@@ -6,6 +6,8 @@ import GradientTextDemo from "./GradientTextDemo";
 import FocusLensDemo from "./FocusLensDemo";
 import MagneticTextTrailDemo from "./MagneticTextTrailDemo";
 import PerspectiveStageDemo from "./PerspectiveStageDemo";
+import RunawayButtonDemo from "./RunawayButtonDemo";
+import GuardedActionDemo from "./GuardedActionDemo";
 
 const demos: Record<string, ComponentType> = {
   "magnetic-button": MagneticButtonDemo,
@@ -14,6 +16,8 @@ const demos: Record<string, ComponentType> = {
   "focus-lens": FocusLensDemo,
   "magnetic-text-trail": MagneticTextTrailDemo,
   "perspective-stage": PerspectiveStageDemo,
+  "runaway-button": RunawayButtonDemo,
+  "guarded-action": GuardedActionDemo,
 };
 
 interface DemoRendererProps {

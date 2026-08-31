@@ -45,6 +45,18 @@ export const components: ComponentMeta[] = [
     description: "An interactive 3D stage for layered content and product scenes.",
     category: "Cards",
   },
+  {
+    name: "Runaway Button",
+    slug: "runaway-button",
+    description: "A playful button that gently dodges the pointer until a condition is met.",
+    category: "Buttons",
+  },
+  {
+    name: "Guarded Action",
+    slug: "guarded-action",
+    description: "A deliberate hold-to-confirm control for potentially destructive actions.",
+    category: "Buttons",
+  },
 ];
 
 export function getComponentBySlug(slug: string) {

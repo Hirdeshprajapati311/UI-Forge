@@ -1,0 +1,69 @@
+---
+title: Runaway Button
+description: A playful button that gently dodges the pointer until a condition is met.
+---
+
+# Runaway Button
+
+Runaway Button adds a playful pointer interaction to a normal form button. When `enabled` is false, it gently moves within its parent container as the pointer approaches. Once the requirement is satisfied, it returns to its original position and behaves like a regular button.
+
+## Installation
+
+```bash
+npx forgexui add runaway-button
+```
+
+## Usage
+
+```tsx
+import { useState } from "react";
+import RunawayButton from "@/components/ui/RunawayButton";
+
+export default function Example() {
+  const [agreed, setAgreed] = useState(false);
+
+  return (
+    <form>
+      <label>
+        <input
+          type="checkbox"
+          required
+          checked={agreed}
+          onChange={(event) => setAgreed(event.target.checked)}
+        />
+        I agree to the Terms & Conditions
+      </label>
+
+      <RunawayButton type="submit" enabled={agreed}>
+        Submit
+      </RunawayButton>
+    </form>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | required | Content displayed inside the button |
+| `enabled` | `boolean` | `false` | Allows normal pointer and click behavior when true |
+| `type` | `"button" \| "submit"` | `"button"` | Native button type |
+| `maxDistance` | `number` | `120` | Pointer distance at which the button begins moving |
+| `disabled` | `boolean` | `false` | Native disabled state |
+| `className` | `string` | `""` | Additional CSS classes |
+| `onClick` | `MouseEventHandler` | - | Optional native click handler |
+
+## Accessibility
+
+The runaway effect is only a visual pointer interaction. The component remains a semantic `<button>`, does not trap keyboard users, and does not replace form validation. Use native `required` controls or your own validation logic to enforce the actual condition.
+
+When disabled by `enabled={false}`, the button exposes a description explaining that the required step must be completed first. Keyboard users can still focus and activate it normally.
+
+## Reduced motion
+
+When the user has enabled `prefers-reduced-motion: reduce`, the button does not move. Touch pointers are also ignored so the interaction stays comfortable on mobile devices.
+
+## About
+
+Runaway Button is designed as a lighthearted interaction detail, not a frustrating obstacle. Keep the movement subtle, provide a visible explanation, and always make the underlying action accessible through normal keyboard and form behavior.

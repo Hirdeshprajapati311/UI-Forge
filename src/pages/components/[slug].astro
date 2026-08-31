@@ -9,6 +9,8 @@ import GradientTextDemo from "../../components/demos/GradientTextDemo";
 import FocusLensDemo from "../../components/demos/FocusLensDemo";
 import MagneticTextTrailDemo from "../../components/demos/MagneticTextTrailDemo";
 import PerspectiveStageDemo from "../../components/demos/PerspectiveStageDemo";
+import RunawayButtonDemo from "../../components/demos/RunawayButtonDemo";
+import GuardedActionDemo from "../../components/demos/GuardedActionDemo";
 import { components } from "../../lib/components";
 
 export async function getStaticPaths() {
@@ -76,6 +78,10 @@ const docsClass = "docs-content";
           <MagneticTextTrailDemo client:load />
         ) : component.slug === "perspective-stage" ? (
           <PerspectiveStageDemo client:load />
+        ) : component.slug === "runaway-button" ? (
+          <RunawayButtonDemo client:load />
+        ) : component.slug === "guarded-action" ? (
+          <GuardedActionDemo client:load />
         ) : (
           <p class="text-sm text-zinc-500">Preview unavailable.</p>
         )}

@@ -1,0 +1,93 @@
+---
+title: Guarded Action
+description: A deliberate hold-to-confirm control for potentially destructive actions.
+---
+
+# Guarded Action
+
+Guarded Action turns a routine destructive-action confirmation into a short, tactile hold interaction. The button stays calm while idle, arms while held, and calls `onConfirm` once the hold completes.
+
+## Installation
+
+```bash
+npx forgexui add guarded-action
+```
+
+## Usage
+
+```tsx
+import GuardedAction from "@/components/ui/GuardedAction";
+
+export default function DeleteProject() {
+  return (
+    <GuardedAction
+      type="button"
+      warning="Keep holding to delete this project."
+      confirmLabel="Hold to delete"
+      successLabel="Deleted"
+      onConfirm={() => deleteProject()}
+    >
+      Delete Project
+    </GuardedAction>
+  );
+}
+```
+
+## Required checkbox example
+
+```tsx
+const [agreed, setAgreed] = useState(false);
+
+<form>
+  <label>
+    <input
+      type="checkbox"
+      required
+      checked={agreed}
+      onChange={(event) => setAgreed(event.target.checked)}
+    />
+    I understand this cannot be undone.
+  </label>
+
+  <GuardedAction enabled={agreed} onConfirm={deleteProject}>
+    Delete Project
+  </GuardedAction>
+</form>
+```
+
+The parent should still enforce authorization and validation. `GuardedAction` only provides the deliberate interaction and should never be the sole protection for an irreversible action.
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | required | Idle button content |
+| `onConfirm` | `() => void` | required | Called exactly once after the hold completes |
+| `enabled` | `boolean` | `true` | Keeps the action available for normal activation; set false to prevent arming |
+| `duration` | `number` | `1350` | Hold duration in milliseconds |
+| `warning` | `string` | `Keep holding to confirm this action.` | Live status shown while arming |
+| `confirmLabel` | `string` | `Hold to confirm` | Button content while arming |
+| `successLabel` | `string` | `Confirmed` | Button content after confirmation |
+| `disabled` | `boolean` | `false` | Native disabled state |
+| `className` | `string` | `""` | Additional CSS classes |
+| `type` | `"button" \| "submit"` | `"button"` | Native button type |
+
+## Interaction states
+
+- **Idle:** Renders as a quiet, normal button.
+- **Arming:** Holding with a pointer, Space, or Enter fills the progress indicator. Releasing early or pressing Escape cancels.
+- **Confirmed:** The callback runs once and the button shows the success label. Remount the component or use a parent-controlled key/state boundary to reset it.
+
+## Accessibility
+
+The component remains a semantic `<button>` and does not trap keyboard users. Pointer and touch holds are supported, while Space and Enter start the same hold flow for keyboard users. Escape cancels an active hold, and status text is exposed through a live region.
+
+Use native form validation, authorization checks, and server-side protections for the actual destructive action. The hold interaction is an additional confirmation cue, not a replacement for those controls.
+
+## Reduced motion
+
+The confirmation timing remains deliberate, but the component does not use escape movement or animated transitions when `prefers-reduced-motion: reduce` is enabled. Touch input is handled without any pointer retreat behavior.
+
+## About
+
+Guarded Action is designed to make destructive actions feel intentional without making them frustrating or inaccessible. Keep the duration short, explain what will happen, and provide a clear recovery path in the surrounding application.
