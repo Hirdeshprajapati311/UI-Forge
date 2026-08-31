@@ -1,11 +1,13 @@
-import type { ComponentType } from "react";
+import React, { type ComponentType } from "react";
 
 import MagneticButtonDemo from "./MagneticButtonDemo";
 import SpotlightCardDemo from "./SpotlightCardDemo";
+import GradientTextDemo from "./GradientTextDemo";
 
 const demos: Record<string, ComponentType> = {
   "magnetic-button": MagneticButtonDemo,
   "spotlight-card": SpotlightCardDemo,
+  "gradient-text": GradientTextDemo,
 };
 
 interface DemoRendererProps {
@@ -18,12 +20,12 @@ export default function DemoRenderer({
   const Demo = demos[slug];
 
   if (!Demo) {
-    return (
-      <p className="text-sm text-zinc-500">
-        Preview unavailable.
-      </p>
+    return React.createElement(
+      "p",
+      { className: "text-sm text-zinc-500" },
+      "Preview unavailable."
     );
   }
 
-  return <Demo />;
+  return React.createElement(Demo);
 }

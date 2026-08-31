@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 interface MagneticButtonProps {
   children: React.ReactNode;
@@ -37,17 +37,16 @@ export default function MagneticButton({
     });
   };
 
-  return (
-    <button
-      ref={buttonRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        transform: `translate(${position.x}px, ${position.y}px)`,
-      }}
-      className="rounded-xl bg-white px-6 py-3 font-medium text-zinc-950 transition-transform duration-200 ease-out"
-    >
-      {children}
-    </button>
+  return React.createElement(
+    "button",
+    {
+      ref: buttonRef,
+      onMouseMove: handleMouseMove,
+      onMouseLeave: handleMouseLeave,
+      style: { transform: `translate(${position.x}px, ${position.y}px)` },
+      className:
+        "rounded-xl bg-white px-6 py-3 font-medium text-zinc-950 transition-transform duration-200 ease-out",
+    },
+    children
   );
 }

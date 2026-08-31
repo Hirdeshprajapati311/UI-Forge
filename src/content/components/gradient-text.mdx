@@ -1,0 +1,41 @@
+---
+title: Gradient Text
+description: Beautiful gradient typography for modern interfaces.
+---
+
+# Gradient Text
+
+Beautiful gradient typography for modern interfaces.
+
+## Installation
+
+Copy the component into your project:
+
+```bash
+npx forgexui add gradient-text
+```
+
+## Usage
+
+```tsx
+import GradientText from "@/components/ui/GradientText";
+
+export default function Example() {
+  return (
+    <GradientText className="text-4xl font-bold">
+      Beautiful interfaces.
+    </GradientText>
+  );
+}
+```
+
+## Props
+
+| Prop        | Type        | Default  | Description                                |
+| ----------- | ----------- | -------- | ------------------------------------------ |
+| `children`  | `ReactNode` | required | Content displayed inside the gradient text |
+| `className` | `string`    | `""`     | Additional classes applied to the text     |
+
+## About
+
+Gradient Text adds colorful gradient typography to your interface while remaining lightweight and easy to customize.

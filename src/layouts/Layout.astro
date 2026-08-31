@@ -7,11 +7,13 @@ import Footer from "../components/layout/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  canonicalURL?: string;
 }
 
 const {
   title = "UI Forge",
   description = "Beautiful, reusable UI components for modern web applications.",
+  canonicalURL = Astro.url.href,
 } = Astro.props;
 ---
 
@@ -23,6 +25,22 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="UI Forge" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
 
     <link rel="icon" href="/favicon.svg" />
   </head>
