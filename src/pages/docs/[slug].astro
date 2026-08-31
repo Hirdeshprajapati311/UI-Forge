@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("components");
+
+  return docs.map((doc) => ({
+    params: {
+      slug: doc.id,
+    },
+    props: {
+      doc,
+    },
+  }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await doc.render();
+---
+
+<Layout
+  title={`${doc.data.title} | UI Forge`}
+  description={doc.data.description}
+>
+  <article class="mx-auto max-w-3xl px-6 py-20">
+
+    <a
+      href="/components"
+      class="text-sm text-zinc-500 hover:text-zinc-300"
+    >
+      ← Back to components
+    </a>
+
+    <div class="prose prose-invert mt-10 max-w-none">
+      <Content />
+    </div>
+
+  </article>
+</Layout>

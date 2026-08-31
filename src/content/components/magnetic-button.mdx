@@ -1,0 +1,37 @@
+---
+title: Magnetic Button
+description: A button that subtly follows the user's cursor.
+---
+
+# Magnetic Button
+
+A button that subtly follows the user's cursor.
+
+## Installation
+
+Copy the component into your project:
+
+```bash
+npx ui-forge add magnetic-button
+```
+
+## Usage
+
+```tsx
+import MagneticButton from "@/components/ui/MagneticButton";
+
+export default function Example() {
+  return <MagneticButton>Hover me</MagneticButton>;
+}
+```
+
+## Props
+
+| Prop       | Type        | Default  | Description                                         |
+| ---------- | ----------- | -------- | --------------------------------------------------- |
+| `children` | `ReactNode` | required | Content displayed inside the button                 |
+| `strength` | `number`    | `0.25`   | Controls how strongly the button follows the cursor |
+
+## About
+
+Magnetic Button adds a subtle cursor-following effect to an ordinary button while keeping the component lightweight and easy to customize.

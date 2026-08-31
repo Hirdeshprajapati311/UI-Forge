@@ -5,6 +5,7 @@ export interface ComponentMeta {
   slug: string;
   description: string;
   category: ComponentCategory;
+  featured?: boolean;
 }
 
 export const components: ComponentMeta[] = [

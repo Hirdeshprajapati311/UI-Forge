@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import ComponentPreview from "../../components/layout/ComponentPreview.astro";
-import MagneticButtonDemo from "../../components/demos/MagneticButtonDemo";
+import DemoRenderer from "../../components/demos/DemoRenderer";
 import { components } from "../../lib/components";
 
 export function getStaticPaths() {
@@ -47,7 +47,7 @@ const { component } = Astro.props;
 
     <div class="mt-12">
       <ComponentPreview title="Preview">
-        <MagneticButtonDemo client:load />
+        <DemoRenderer slug={component.slug} client:load />
       </ComponentPreview>
     </div>
 
