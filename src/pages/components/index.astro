@@ -8,12 +8,13 @@ import { components } from "../../lib/components";
   description="Browse beautiful, reusable React components from UI Forge."
 >
   <section class="mx-auto max-w-7xl px-6 py-20">
+
     <div class="max-w-2xl">
       <p class="text-sm font-medium uppercase tracking-widest text-zinc-500">
         Components
       </p>
 
-      <h1 class="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">
+      <h1 class="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
         Build better interfaces.
       </h1>
 
@@ -23,12 +24,72 @@ import { components } from "../../lib/components";
       </p>
     </div>
 
-    <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- Search + filters -->
+    <div class="mt-12 flex flex-col gap-4 sm:flex-row">
+
+      <div class="flex-1">
+        <label for="component-search" class="sr-only">
+          Search components
+        </label>
+
+        <input
+          id="component-search"
+          type="search"
+          placeholder="Search components..."
+          class="w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-white outline-none placeholder:text-zinc-600 focus:border-white/20"
+        />
+      </div>
+
+      <div class="flex gap-2 overflow-x-auto">
+        <button
+          type="button"
+          data-category="All"
+          class="category-button rounded-xl bg-white px-4 py-3 text-sm font-medium text-black"
+        >
+          All
+        </button>
+
+        <button
+          type="button"
+          data-category="Buttons"
+          class="category-button rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-zinc-400 hover:bg-white/[0.05]"
+        >
+          Buttons
+        </button>
+
+        <button
+          type="button"
+          data-category="Cards"
+          class="category-button rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-zinc-400 hover:bg-white/[0.05]"
+        >
+          Cards
+        </button>
+
+        <button
+          type="button"
+          data-category="Text"
+          class="category-button rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-zinc-400 hover:bg-white/[0.05]"
+        >
+          Text
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Component grid -->
+    <div
+      id="component-grid"
+      class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+    >
       {
         components.map((component) => (
           <a
             href={`/components/${component.slug}`}
-            class="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-colors hover:border-white/20 hover:bg-white/[0.04]"
+            data-component-card
+            data-name={component.name.toLowerCase()}
+            data-description={component.description.toLowerCase()}
+            data-category={component.category}
+            class="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
           >
             <div class="flex items-center justify-between">
               <span class="text-xs font-medium uppercase tracking-wider text-zinc-500">
@@ -51,5 +112,83 @@ import { components } from "../../lib/components";
         ))
       }
     </div>
+
+    <p
+      id="no-results"
+      class="mt-12 hidden text-center text-sm text-zinc-500"
+    >
+      No components found.
+    </p>
+
   </section>
 </Layout>
+
+<script>
+  const searchInput = document.querySelector<HTMLInputElement>(
+    "#component-search"
+  );
+
+  const cards = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-component-card]")
+  );
+
+  const buttons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>(".category-button")
+  );
+
+  const noResults = document.querySelector<HTMLElement>("#no-results");
+
+  let activeCategory = "All";
+
+  function filterComponents() {
+    const searchTerm = searchInput?.value.toLowerCase().trim() ?? "";
+
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const name = card.dataset.name ?? "";
+      const description = card.dataset.description ?? "";
+      const category = card.dataset.category ?? "";
+
+      const matchesSearch =
+        name.includes(searchTerm) ||
+        description.includes(searchTerm);
+
+      const matchesCategory =
+        activeCategory === "All" ||
+        category === activeCategory;
+
+      const visible = matchesSearch && matchesCategory;
+
+      card.classList.toggle("hidden", !visible);
+
+      if (visible) {
+        visibleCount++;
+      }
+    });
+
+    noResults?.classList.toggle("hidden", visibleCount !== 0);
+  }
+
+  searchInput?.addEventListener("input", filterComponents);
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeCategory = button.dataset.category ?? "All";
+
+      buttons.forEach((item) => {
+        const active =
+          item.dataset.category === activeCategory;
+
+        item.classList.toggle("bg-white", active);
+        item.classList.toggle("text-black", active);
+
+        item.classList.toggle("border", !active);
+        item.classList.toggle("border-white/10", !active);
+        item.classList.toggle("text-zinc-400", !active);
+      });
+
+      filterComponents();
+    });
+  });
+</script>
