@@ -1,0 +1,69 @@
+---
+title: Forge Loader
+description: Expressive loaders built around visual metaphors for progress and continuous activity.
+---
+
+# Forge Loader
+
+Forge Loader is a small family of expressive loading states. Each variant communicates a different kind of work: Water represents measurable progress, while Stack represents continuous activity with no known finish time.
+
+## Variants
+
+### Water
+
+Use Water when you know the current percentage. It works well for uploads, downloads, installation, file processing, and synchronization.
+
+### Stack
+
+Use Stack for indeterminate or continuous processing. It does not represent a percentage and is useful when the duration is unknown.
+
+## Installation
+
+```bash
+npx forgexui add forge-loader
+```
+
+## Usage
+
+```tsx
+import ForgeLoader from "@/components/ui/ForgeLoader";
+
+export function UploadProgress() {
+  return <ForgeLoader variant="water" progress={72} label="Upload progress" />;
+}
+```
+
+```tsx
+import ForgeLoader from "@/components/ui/ForgeLoader";
+
+export function ProcessingState() {
+  return <ForgeLoader variant="stack" label="Processing" />;
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `variant` | `"water" \| "stack"` | `"water"` | Visual metaphor to render |
+| `progress` | `number` | `0` | Controlled percentage for the Water variant, clamped from 0 to 100 |
+| `size` | `"sm" \| "md" \| "lg"` | `"md"` | Loader size |
+| `label` | `string` | variant-dependent | Accessible label announced to assistive technologies |
+| `className` | `string` | `""` | Additional CSS classes |
+
+## Accessibility
+
+Water exposes a `progressbar` role with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` when a numeric `progress` value is provided. Stack exposes an indeterminate `status` with an accessible loading label. Always provide a meaningful `label` when the surrounding context does not describe the work.
+
+## Reduced motion
+
+When `prefers-reduced-motion: reduce` is enabled, Water stops its surface and completion-drop animation and Stack becomes a static three-line representation. Progress remains controlled and the semantic status remains available.
+
+## Choosing a variant
+
+- **Water:** Use for known percentage-based progress toward completion.
+- **Stack:** Use for ongoing work where the duration or completion percentage is unknown.
+
+## About
+
+Forge Loader treats loading as communication, not decoration. The water level tells users how far a task has progressed, while the stack suggests a process that is actively moving through work.

@@ -11,6 +11,7 @@ import MagneticTextTrailDemo from "../../components/demos/MagneticTextTrailDemo"
 import PerspectiveStageDemo from "../../components/demos/PerspectiveStageDemo";
 import RunawayButtonDemo from "../../components/demos/RunawayButtonDemo";
 import GuardedActionDemo from "../../components/demos/GuardedActionDemo";
+import ForgeLoaderDemo from "../../components/demos/ForgeLoaderDemo";
 import { components } from "../../lib/components";
 
 export async function getStaticPaths() {
@@ -82,6 +83,8 @@ const docsClass = "docs-content";
           <RunawayButtonDemo client:load />
         ) : component.slug === "guarded-action" ? (
           <GuardedActionDemo client:load />
+        ) : component.slug === "forge-loader" ? (
+          <ForgeLoaderDemo client:load />
         ) : (
           <p class="text-sm text-zinc-500">Preview unavailable.</p>
         )}

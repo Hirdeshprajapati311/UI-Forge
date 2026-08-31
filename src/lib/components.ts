@@ -1,4 +1,4 @@
-export type ComponentCategory = "Buttons" | "Cards" | "Text";
+export type ComponentCategory = "Buttons" | "Cards" | "Text" | "Loaders";
 
 export interface ComponentMeta {
   name: string;
@@ -56,6 +56,12 @@ export const components: ComponentMeta[] = [
     slug: "guarded-action",
     description: "A deliberate hold-to-confirm control for potentially destructive actions.",
     category: "Buttons",
+  },
+  {
+    name: "Forge Loader",
+    slug: "forge-loader",
+    description: "Expressive loaders for measurable progress and continuous activity.",
+    category: "Loaders",
   },
 ];
 
