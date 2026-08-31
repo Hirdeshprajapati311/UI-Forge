@@ -1,0 +1,19 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/50">
+  {title && (
+    <div class="border-b border-white/10 px-5 py-3">
+      <p class="text-sm font-medium text-zinc-400">{title}</p>
+    </div>
+  )}
+
+  <div class="min-h-72 p-8">
+    <slot />
+  </div>
+</div>

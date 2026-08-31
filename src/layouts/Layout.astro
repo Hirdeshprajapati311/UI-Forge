@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "UI Forge",
+  description = "Beautiful, reusable UI components for modern web applications.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+
+  <body class="min-h-screen bg-zinc-950 text-zinc-100 antialiased">
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>
