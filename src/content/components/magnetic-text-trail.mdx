@@ -1,0 +1,41 @@
+---
+title: Magnetic Text Trail
+description: Responsive typography where nearby characters lean toward your cursor.
+---
+
+# Magnetic Text Trail
+
+An interactive text system where individual characters shift and rotate toward the cursor, then smoothly settle back when it leaves.
+
+## Installation
+
+```bash
+npx forgexui add magnetic-text-trail
+```
+
+## Usage
+
+```tsx
+import MagneticTextTrail from "@/components/ui/MagneticTextTrail";
+
+export default function Example() {
+  return (
+    <MagneticTextTrail strength={0.28} radius={110} maxRotation={10}>
+      Create interfaces that feel alive.
+    </MagneticTextTrail>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `string` | required | Sentence split into interactive characters |
+| `strength` | `number` | `0.28` | How strongly characters move toward the cursor |
+| `radius` | `number` | `110` | Distance in pixels affected by the cursor |
+| `maxRotation` | `number` | `10` | Maximum character rotation in degrees |
+
+## About
+
+Magnetic Text Trail adds a tactile layer to headlines, statements, and short labels. Keep the text concise so the character-level movement remains easy to read.

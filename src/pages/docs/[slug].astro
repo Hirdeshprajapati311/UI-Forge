@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import CodeCopyButtons from "../../components/docs/CodeCopyButtons.astro";
 
 export async function getStaticPaths() {
   const docs = await getCollection("components");
@@ -40,3 +41,5 @@ const docsClass = "docs-content";
     </div>
   </article>
 </Layout>
+
+<CodeCopyButtons />

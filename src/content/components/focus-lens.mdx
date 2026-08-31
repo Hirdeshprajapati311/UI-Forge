@@ -1,0 +1,35 @@
+---
+title: Focus Lens
+description: A moving focus window that keeps the content under your cursor crisp.
+---
+
+# Focus Lens
+
+A moving focus window that keeps the content under your cursor crisp while the surrounding content fades into the background.
+
+## Installation
+
+```bash
+npx forgexui add focus-lens
+```
+
+## Usage
+
+```tsx
+import FocusLens from "@/components/ui/FocusLens";
+
+export default function Example() {
+  return <FocusLens radius={120}>Build beautiful interfaces.</FocusLens>;
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | required | Content shown inside the focus window |
+| `radius` | `number` | `120` | Diameter radius of the sharp focus region |
+
+## About
+
+Focus Lens works well for hero typography, product showcases, screenshots, and feature sections where you want the cursor to reveal detail without another hover animation.

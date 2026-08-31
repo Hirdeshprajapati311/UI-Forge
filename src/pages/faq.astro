@@ -1,0 +1,81 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="FAQ | UI Forge" description="Frequently asked questions about UI Forge.">
+  <section class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+    <div class="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+      <header class="max-w-md">
+        <span class="inline-flex rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-zinc-500">
+          Help center
+        </span>
+        <h1 class="mt-6 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+          Questions, answered.
+        </h1>
+        <p class="mt-6 text-lg leading-8 text-zinc-400">
+          A quick guide to using, customizing, and sharing UI Forge components.
+        </p>
+        <div class="mt-10 border-l border-indigo-400/50 pl-4 text-sm leading-6 text-zinc-500">
+          Can't find what you need? Check the component documentation for
+          installation commands, examples, and props.
+        </div>
+        <a
+          href="/docs"
+          class="mt-7 inline-flex text-sm font-medium text-zinc-200 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white hover:decoration-white/50"
+        >
+          Browse the documentation
+        </a>
+      </header>
+
+      <div class="faq-list divide-y divide-white/10 rounded-2xl border border-white/10 bg-white/[0.02]">
+        <details open class="faq-item group">
+          <summary class="faq-summary">
+            <span>What is UI Forge?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p>UI Forge is an open-source library of reusable React components. Each component includes an example, installation command, usage code, and props documentation.</p>
+        </details>
+
+        <details class="faq-item group">
+          <summary class="faq-summary">
+            <span>How do I install a component?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p>Open a component's documentation page and copy the installation command. Then copy the source into your project and adjust the imports or styling to fit your setup.</p>
+        </details>
+
+        <details class="faq-item group">
+          <summary class="faq-summary">
+            <span>Can I use the components commercially?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p>Yes. You can use, modify, and ship the components in personal and commercial projects. Review the Terms page for the complete usage conditions.</p>
+        </details>
+
+        <details class="faq-item group">
+          <summary class="faq-summary">
+            <span>Can I customize the components?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p>Absolutely. The components are intended as starting points. Change the classes, props, animation strength, colors, and structure to match your design system.</p>
+        </details>
+
+        <details class="faq-item group">
+          <summary class="faq-summary">
+            <span>Can I request a component?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p>Yes. Open an issue or discussion in the project's GitHub repository with a description of the component and the interaction you need.</p>
+        </details>
+
+        <details class="faq-item group">
+          <summary class="faq-summary">
+            <span>What if I find a bug?</span>
+            <span class="faq-icon" aria-hidden="true">+</span>
+          </summary>
+          <p>Please report it through GitHub with the component name, steps to reproduce, and your environment. Clear reproduction details make fixes much faster.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</Layout>

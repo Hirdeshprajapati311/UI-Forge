@@ -27,6 +27,24 @@ export const components: ComponentMeta[] = [
     description: "Beautiful gradient typography for modern interfaces.",
     category: "Text",
   },
+  {
+    name: "Focus Lens",
+    slug: "focus-lens",
+    description: "A moving focus window that keeps the content under your cursor crisp.",
+    category: "Text",
+  },
+  {
+    name: "Magnetic Text Trail",
+    slug: "magnetic-text-trail",
+    description: "Responsive typography where nearby characters lean toward your cursor.",
+    category: "Text",
+  },
+  {
+    name: "Perspective Stage",
+    slug: "perspective-stage",
+    description: "An interactive 3D stage for layered content and product scenes.",
+    category: "Cards",
+  },
 ];
 
 export function getComponentBySlug(slug: string) {

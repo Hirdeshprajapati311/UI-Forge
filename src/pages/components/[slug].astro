@@ -2,9 +2,13 @@
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import ComponentPreview from "../../components/layout/ComponentPreview.astro";
+import CodeCopyButtons from "../../components/docs/CodeCopyButtons.astro";
 import MagneticButtonDemo from "../../components/demos/MagneticButtonDemo";
 import SpotlightCardDemo from "../../components/demos/SpotlightCardDemo";
 import GradientTextDemo from "../../components/demos/GradientTextDemo";
+import FocusLensDemo from "../../components/demos/FocusLensDemo";
+import MagneticTextTrailDemo from "../../components/demos/MagneticTextTrailDemo";
+import PerspectiveStageDemo from "../../components/demos/PerspectiveStageDemo";
 import { components } from "../../lib/components";
 
 export async function getStaticPaths() {
@@ -66,6 +70,12 @@ const docsClass = "docs-content";
           <SpotlightCardDemo client:load />
         ) : component.slug === "gradient-text" ? (
           <GradientTextDemo client:load />
+        ) : component.slug === "focus-lens" ? (
+          <FocusLensDemo client:load />
+        ) : component.slug === "magnetic-text-trail" ? (
+          <MagneticTextTrailDemo client:load />
+        ) : component.slug === "perspective-stage" ? (
+          <PerspectiveStageDemo client:load />
         ) : (
           <p class="text-sm text-zinc-500">Preview unavailable.</p>
         )}
@@ -79,3 +89,5 @@ const docsClass = "docs-content";
     </div>
   </section>
 </Layout>
+
+<CodeCopyButtons />

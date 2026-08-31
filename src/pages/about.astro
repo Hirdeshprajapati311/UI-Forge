@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { components } from "../lib/components";
+---
+
+<Layout
+  title="About | UI Forge"
+  description="Learn more about UI Forge and its open-source component library."
+>
+  <section class="mx-auto max-w-6xl px-6 py-16 sm:py-24">
+    <div class="max-w-3xl ">
+      <p class="text-sm font-medium uppercase tracking-widest text-zinc-500">About UI Forge</p>
+      <h1 class="mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        Build the idea, not the boilerplate.
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
+        UI Forge is a growing collection of thoughtful React components for makers
+        who want their interfaces to feel custom without starting from zero.
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-5 sm:grid-cols-3">
+      <div class="rounded-2xl mt-3 border border-white/10 bg-white/[0.02] p-6">
+        <p class="text-3xl font-semibold text-white">{components.length}</p>
+        <p class="mt-2 text-sm text-zinc-500">Components to explore</p>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+        <p class="text-3xl font-semibold text-white">React</p>
+        <p class="mt-2 text-sm text-zinc-500">Built for modern projects</p>
+      </div>
+      <div class="rounded-2xl border  border-white/10 bg-white/[0.02] p-6">
+        <p class="text-3xl font-semibold text-white">Open</p>
+        <p class="mt-2 text-sm text-zinc-500">Made to copy and customize</p>
+      </div>
+    </div>
+
+    <div class="mt-16 grid gap-12 border-t border-white/10 pt-12 md:grid-cols-2">
+      <div>
+        <p class="text-sm font-medium uppercase tracking-widest text-zinc-500 mt-3">Our approach</p>
+        <h2 class="mt-3 text-2xl font-semibold tracking-tight text-white">Small details matter.</h2>
+      </div>
+      <div class="space-y-5 text-base leading-8 text-zinc-400">
+        <p>Every component is designed to be readable, flexible, and useful in a real product.</p>
+        <p>Use the examples as a starting point, change the styling to fit your system, and make the result your own.</p>
+        <a href="/components" class="inline-flex text-sm font-medium text-zinc-200 underline underline-offset-4 hover:text-white">
+          Explore the component library
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

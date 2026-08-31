@@ -1,0 +1,56 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="404 | UI Forge"
+  description="The page you're looking for doesn't exist."
+>
+  <section
+    class="not-found-page relative flex min-h-[calc(100vh-9rem)] w-full items-center justify-center overflow-hidden px-6 py-20 sm:px-10"
+  >
+    <div
+      class="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/10 blur-3xl"
+    ></div>
+
+    <div
+      class="not-found-card relative w-full max-w-2xl rounded-3xl border border-white/10 bg-zinc-900/60 p-8 text-center shadow-2xl shadow-black/20 backdrop-blur sm:p-14"
+    >
+      <div
+        class="not-found-badge mx-auto mb-7 flex items-center justify-center rounded-2xl border border-indigo-300/20 bg-indigo-400/10 text-xl font-semibold text-indigo-200"
+        aria-hidden="true"
+      >
+        404
+      </div>
+
+      <p class="text-xs font-semibold uppercase tracking-[0.25em] text-zinc-500">
+        Page not found
+      </p>
+
+      <h1 class="mt-4 text-4xl font-bold tracking-tight text-white sm:text-6xl">
+        This page wandered off the canvas.
+      </h1>
+
+      <p class="mx-auto mt-6 max-w-xl text-base leading-7 text-zinc-400 sm:text-lg sm:leading-8">
+        The page you're looking for doesn't exist or may have been moved. Let's
+        get you back to something useful.
+      </p>
+
+      <div class="not-found-actions mt-9 flex w-full flex-col justify-center gap-3 sm:flex-row">
+        <a
+          href="/"
+          class="inline-flex min-h-11 items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-zinc-950 transition-colors hover:bg-zinc-200"
+        >
+          Back to home
+        </a>
+
+        <a
+          href="/components"
+          class="inline-flex min-h-11 items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 text-sm font-semibold text-zinc-200 transition-colors hover:bg-white/10 hover:text-white"
+        >
+          Browse components
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

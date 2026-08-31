@@ -1,0 +1,41 @@
+<script>
+  const addCopyButtons = () => {
+    document.querySelectorAll<HTMLElement>(".docs-content pre").forEach((pre) => {
+      if (pre.querySelector(".code-copy-button")) return;
+
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "code-copy-button";
+      button.textContent = "Copy";
+      button.setAttribute("aria-label", "Copy code to clipboard");
+
+      button.addEventListener("click", async () => {
+        const code = pre.querySelector("code")?.textContent ?? "";
+
+        try {
+          await navigator.clipboard.writeText(code);
+          button.textContent = "Copied";
+          button.dataset.copied = "true";
+
+          window.setTimeout(() => {
+            button.textContent = "Copy";
+            delete button.dataset.copied;
+          }, 1600);
+        } catch {
+          button.textContent = "Failed";
+          window.setTimeout(() => {
+            button.textContent = "Copy";
+          }, 1600);
+        }
+      });
+
+      pre.append(button);
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", addCopyButtons, { once: true });
+  } else {
+    addCopyButtons();
+  }
+</script>

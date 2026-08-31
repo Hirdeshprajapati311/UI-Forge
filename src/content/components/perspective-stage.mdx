@@ -1,0 +1,40 @@
+---
+title: Perspective Stage
+description: An interactive 3D stage for layered content and product scenes.
+---
+
+# Perspective Stage
+
+Turn layered content into a small interactive 3D scene. The stage tilts toward the cursor while depth-aware children create a sense of space.
+
+## Installation
+
+```bash
+npx forgexui add perspective-stage
+```
+
+## Usage
+
+```tsx
+import PerspectiveStage from "@/components/ui/PerspectiveStage";
+
+export default function Example() {
+  return (
+    <PerspectiveStage>
+      <div data-depth="1">Background</div>
+      <div data-depth="3">Foreground card</div>
+    </PerspectiveStage>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `children` | `ReactNode` | required | Layered content rendered inside the stage |
+| `intensity` | `number` | `12` | Maximum tilt angle in degrees |
+
+## About
+
+Perspective Stage is suited to product mockups, dashboards, hero compositions, and artwork. Use CSS `translateZ` or depth-aware child styles to control how layers sit in the scene.
