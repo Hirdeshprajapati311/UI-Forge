@@ -1,0 +1,296 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import PerspectiveStageDemo from "../../components/demos/PerspectiveStageDemo";
+import Forge3DExplorer from "../../components/forge3d/demos/Forge3DExplorer";
+---
+
+<Layout
+  title="ForgeX3D | UI Forge"
+  description="An experimental space for dimensional interfaces and interactive 3D elements."
+>
+  <section class="dimension-page">
+    <div class="dimension-orb dimension-orb-one" aria-hidden="true"></div>
+    <div class="dimension-orb dimension-orb-two" aria-hidden="true"></div>
+
+    <header class="dimension-hero">
+      <p class="dimension-eyebrow"><span></span> ForgeX3D / Experimental space</p>
+      <h1>Interfaces with<br /><em>another dimension.</em></h1>
+      <p class="dimension-intro">
+        A playground for depth, perspective, and motion. Explore a growing collection
+        of 3D building blocks designed to make interfaces feel more tangible.
+      </p>
+      <button class="dimension-explore" type="button" data-forge3d-explore>
+        <span>Explore the 3D collection</span><b>↗</b>
+      </button>
+    </header>
+
+    <section class="dimension-feature" aria-labelledby="scene-title">
+      <div class="dimension-feature-copy">
+        <p class="dimension-index">01 / Interactive composition</p>
+        <h2 id="scene-title">Depth makes<br />space feel alive.</h2>
+        <p>
+          Move across the scene to shift the perspective. Layered surfaces and
+          floating content create a sense of space without overwhelming the page.
+        </p>
+        <span class="dimension-hint">Move your pointer across the scene <b>↗</b></span>
+      </div>
+
+      <div class="dimension-stage" data-dimension-stage>
+        <div class="dimension-stage-glow" aria-hidden="true"></div>
+        <div class="dimension-grid" aria-hidden="true"></div>
+        <div class="dimension-stage-inner">
+          <div class="dimension-ring dimension-ring-back" data-depth="-1" aria-hidden="true"></div>
+          <div class="dimension-ring dimension-ring-front" data-depth="2" aria-hidden="true"></div>
+          <div class="dimension-orbit orbit-one" aria-hidden="true"></div>
+          <div class="dimension-orbit orbit-two" aria-hidden="true"></div>
+          <div class="dimension-object" data-depth="3">
+            <div class="dimension-object-top"></div>
+            <div class="dimension-object-front">
+              <span>FX</span>
+              <strong>Dimension<br />01</strong>
+              <small>Explore the depth</small>
+            </div>
+            <div class="dimension-object-side"></div>
+          </div>
+          <div class="dimension-label label-top" data-depth="1">depth / 03</div>
+          <div class="dimension-label label-bottom" data-depth="2">FORGEXUI <span>•</span> 2026</div>
+        </div>
+      </div>
+    </section>
+
+    <Forge3DExplorer client:load />
+
+    <section class="dimension-docs" aria-labelledby="forge3d-docs-title">
+      <div class="dimension-docs-intro">
+        <p class="dimension-index">04 / ForgeX3D notes</p>
+        <h2 id="forge3d-docs-title">Bring depth into your interface.</h2>
+        <p>ForgeX3D keeps the rendering foundation separate from each individual element, so your scenes can grow without repeating setup.</p>
+      </div>
+      <div class="dimension-doc-grid">
+        <article class="dimension-doc-card">
+          <div class="dimension-doc-card-heading"><span>Installation</span><button type="button" data-copy="npm install three @react-three/fiber @react-three/drei">Copy</button></div>
+          <p>Install the small set of packages that powers the shared canvas and procedural elements.</p>
+          <code>npm install three @react-three/fiber @react-three/drei</code>
+        </article>
+        <article class="dimension-doc-card">
+          <div class="dimension-doc-card-heading"><span>Usage</span><button type="button" data-copy="&lt;Forge3DCanvas&gt;\n  &lt;Forge3DScene&gt;\n    &lt;ForgeOrb interactive /&gt;\n  &lt;/Forge3DScene&gt;\n&lt;/Forge3DCanvas&gt;">Copy</button></div>
+          <p>Compose a scene from the shared infrastructure and keep the element API focused.</p>
+          <pre><code>&lt;Forge3DCanvas&gt;
+  &lt;Forge3DScene&gt;
+    &lt;ForgeOrb interactive /&gt;
+  &lt;/Forge3DScene&gt;
+&lt;/Forge3DCanvas&gt;</code></pre>
+        </article>
+        <article class="dimension-doc-card dimension-doc-about">
+          <div class="dimension-doc-card-heading"><span>About ForgeX3D</span></div>
+          <p>ForgeX3D is the experimental 3D layer of ForgeXUI: a premium space for procedural objects, perspective, and tactile motion.</p>
+          <a href="/about">Learn more about ForgeXUI <b>↗</b></a>
+        </article>
+      </div>
+    </section>
+
+    <section class="dimension-library" aria-labelledby="library-title">
+      <div class="dimension-section-heading">
+        <p class="dimension-index">02 / Building blocks</p>
+        <h2 id="library-title">A few ways to add depth.</h2>
+      </div>
+      <div class="dimension-cards">
+        <article class="dimension-card card-offset-one">
+          <div class="card-icon card-icon-stack" aria-hidden="true"><i></i><i></i><i></i></div>
+          <p>Layered surfaces</p>
+          <span>Use depth to establish hierarchy between content and context.</span>
+        </article>
+        <article class="dimension-card card-offset-two">
+          <div class="card-icon card-icon-orbit" aria-hidden="true"><i></i></div>
+          <p>Soft motion</p>
+          <span>Give a scene a responsive point of view without visual noise.</span>
+        </article>
+        <a class="dimension-card card-link" href="/components/perspective-stage">
+          <div class="card-icon card-icon-frame" aria-hidden="true">↗</div>
+          <p>Perspective Stage</p>
+          <span>Open the reusable component and bring this interaction into your UI.</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="dimension-component" aria-labelledby="component-title">
+      <div>
+        <p class="dimension-index">03 / In the library</p>
+        <h2 id="component-title">A reusable point of view.</h2>
+        <p>Try the existing Perspective Stage component in a tighter composition.</p>
+      </div>
+      <div class="dimension-component-preview">
+        <PerspectiveStageDemo client:load />
+      </div>
+    </section>
+  </section>
+</Layout>
+
+<script>
+  const stage = document.querySelector<HTMLElement>("[data-dimension-stage]");
+  const explore = document.querySelector<HTMLButtonElement>("[data-forge3d-explore]");
+  const exploration = document.querySelector<HTMLElement>("[data-forge3d-exploration]");
+  const hero = document.querySelector<HTMLElement>(".dimension-hero");
+  const feature = document.querySelector<HTMLElement>(".dimension-feature");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let frame = 0;
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+
+  if (stage && !reducedMotion.matches && !window.matchMedia("(pointer: coarse)").matches) {
+    const inner = stage.querySelector<HTMLElement>(".dimension-stage-inner");
+
+    const render = () => {
+      currentX += (targetX - currentX) * 0.1;
+      currentY += (targetY - currentY) * 0.1;
+      inner?.style.setProperty("--scene-x", `${currentX}deg`);
+      inner?.style.setProperty("--scene-y", `${currentY}deg`);
+      frame = requestAnimationFrame(render);
+    };
+
+    stage.addEventListener("pointermove", (event) => {
+      const bounds = stage.getBoundingClientRect();
+      targetX = ((event.clientY - bounds.top) / bounds.height - 0.5) * -10;
+      targetY = ((event.clientX - bounds.left) / bounds.width - 0.5) * 14;
+    });
+    stage.addEventListener("pointerleave", () => {
+      targetX = 0;
+      targetY = 0;
+    });
+    render();
+  }
+
+  const setExploration = (active: boolean) => {
+    exploration?.classList.toggle("is-active", active);
+    exploration?.setAttribute("aria-hidden", String(!active));
+    hero?.classList.toggle("is-dimmed", active);
+    feature?.classList.toggle("is-dimmed", active);
+    if (active) exploration?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+    else hero?.scrollIntoView({ behavior: reducedMotion.matches ? "auto" : "smooth", block: "start" });
+  };
+
+  explore?.addEventListener("click", () => setExploration(true));
+  document.querySelector<HTMLButtonElement>("[data-forge3d-back]")?.addEventListener("click", () => setExploration(false));
+
+  document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const value = button.dataset.copy ?? "";
+      await navigator.clipboard.writeText(value);
+      const original = button.textContent;
+      button.textContent = "Copied";
+      window.setTimeout(() => { button.textContent = original; }, 1400);
+    });
+  });
+
+  window.addEventListener("pagehide", () => cancelAnimationFrame(frame), { once: true });
+</script>
+
+<style is:global>
+  .dimension-page {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding: 7rem max(1.5rem, calc((100vw - 76rem) / 2)) 8rem;
+    background: radial-gradient(circle at 70% 13%, rgb(22 184 189 / 0.1), transparent 26rem);
+  }
+  .dimension-hero { position: relative; max-width: 52rem; margin-bottom: 6rem; }
+  .dimension-eyebrow, .dimension-index { color: #6ec5ca; font-size: .68rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+  .dimension-eyebrow { display: flex; align-items: center; gap: .6rem; }
+  .dimension-eyebrow span { width: .4rem; height: .4rem; border-radius: 50%; background: #6ec5ca; box-shadow: 0 0 1rem rgb(110 197 202 / .75); }
+  .dimension-hero h1 { margin: 1.4rem 0 1.5rem; color: #e8fbff; font-size: clamp(3.2rem, 8vw, 7.4rem); font-weight: 500; letter-spacing: -.075em; line-height: .92; }
+  .dimension-hero h1 em { color: #6ec5ca; font-style: normal; }
+  .dimension-intro { max-width: 31rem; color: #91b1bd; font-size: 1rem; line-height: 1.75; }
+  .dimension-explore { display: inline-flex; align-items: center; gap: 1.2rem; margin-top: 2rem; padding: .8rem 1rem .8rem 1.2rem; border: 1px solid rgb(110 197 202 / .28); border-radius: 999px; background: rgb(110 197 202 / .07); color: #e8fbff; font-size: .82rem; cursor: pointer; transition: background .3s ease, border-color .3s ease, transform .3s ease; }
+  .dimension-explore b { display: grid; width: 1.7rem; height: 1.7rem; place-items: center; border-radius: 50%; background: #6ec5ca; color: #091117; font-size: 1rem; font-weight: 500; }
+  .dimension-explore:hover { border-color: rgb(110 197 202 / .6); background: rgb(110 197 202 / .14); transform: translateY(-2px); }
+  .dimension-explore:focus-visible, .forge3d-back:focus-visible { outline: 2px solid #6ec5ca; outline-offset: 4px; }
+  .dimension-hero, .dimension-feature { transition: opacity .6s ease, filter .6s ease, transform .6s ease; }
+  .dimension-hero.is-dimmed, .dimension-feature.is-dimmed { opacity: .28; filter: blur(2px); transform: scale(.985); pointer-events: none; }
+  .forge3d-explorer { display: none; margin-top: 5rem; scroll-margin-top: 5rem; opacity: 0; transform: translateY(2rem) scale(.98); }
+  .forge3d-explorer.is-active { display: block; animation: forge3d-enter .8s cubic-bezier(.22, 1, .36, 1) forwards; }
+  .forge3d-explorer-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2rem; }
+  .forge3d-explorer-heading h2 { margin: .7rem 0; color: #e8fbff; font-size: clamp(2.4rem, 5vw, 4.8rem); font-weight: 500; letter-spacing: -.065em; line-height: .95; }
+  .forge3d-explorer-heading p:not(.dimension-index) { max-width: 28rem; color: #91b1bd; line-height: 1.7; }
+  .forge3d-back { flex: none; padding: .65rem .9rem; border: 1px solid rgb(255 255 255 / .12); border-radius: 999px; background: transparent; color: #91b1bd; font-size: .75rem; cursor: pointer; transition: color .3s ease, border-color .3s ease; }
+  .forge3d-back:hover { border-color: rgb(110 197 202 / .4); color: #e8fbff; }
+  .forge3d-element-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+  .forge3d-element-tab { display: inline-flex; align-items: center; gap: .65rem; padding: .65rem .8rem; border: 1px solid rgb(255 255 255 / .1); border-radius: .6rem; background: rgb(255 255 255 / .025); color: #91b1bd; font-size: .75rem; cursor: pointer; transition: border-color .2s ease, background .2s ease, color .2s ease; }
+  .forge3d-element-tab span { color: #668993; font-size: .62rem; letter-spacing: .1em; }
+  .forge3d-element-tab:hover, .forge3d-element-tab.is-active { border-color: rgb(110 197 202 / .35); background: rgb(110 197 202 / .08); color: #e8fbff; }
+  .forge3d-element-tab:focus-visible { outline: 2px solid #6ec5ca; outline-offset: 3px; }
+  .forge3d-collection-meta { margin: .8rem 0 1.2rem; color: #668993; font-size: .68rem; letter-spacing: .05em; }
+  .forge3d-explorer-grid { display: grid; grid-template-columns: 1.5fr .5fr; min-height: 34rem; overflow: hidden; border: 1px solid rgb(110 197 202 / .18); border-radius: 1.5rem; background: radial-gradient(circle at 35% 40%, rgb(49 93 168 / .12), transparent 30rem), #080f14; }
+  .forge3d-canvas-wrap { position: relative; min-height: 34rem; background-image: linear-gradient(rgb(110 197 202 / .055) 1px, transparent 1px), linear-gradient(90deg, rgb(110 197 202 / .055) 1px, transparent 1px); background-size: 4rem 4rem; }
+  .forge3d-canvas { position: absolute !important; inset: 0; }
+  .forge3d-canvas-label { position: absolute; bottom: 1.4rem; left: 1.5rem; color: #668993; font-size: .65rem; letter-spacing: .15em; text-transform: uppercase; }
+  .forge3d-object-info { display: flex; flex-direction: column; justify-content: center; padding: 2rem; border-left: 1px solid rgb(255 255 255 / .08); background: rgb(255 255 255 / .02); }
+  .forge3d-object-number { color: #6ec5ca; font-size: .7rem; letter-spacing: .18em; }
+  .forge3d-object-kicker { margin-top: 4rem; color: #e8fbff; font-size: .75rem; font-weight: 700; letter-spacing: .16em; }
+  .forge3d-object-info h3 { margin-top: .7rem; color: #91b1bd; font-size: .95rem; font-weight: 400; line-height: 1.5; }
+  .forge3d-object-description { margin-top: 1rem; color: #668993; font-size: .75rem; line-height: 1.6; }
+  .forge3d-object-info dl { margin-top: 3rem; }
+  .forge3d-object-info dl div { display: flex; flex-direction: column; gap: .3rem; padding: .8rem 0; border-top: 1px solid rgb(255 255 255 / .08); }
+  .forge3d-object-info dt { color: #668993; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+  .forge3d-object-info dd { color: #c1dce0; font-size: .75rem; }
+  @keyframes forge3d-enter { to { opacity: 1; transform: translateY(0) scale(1); } }
+  .dimension-docs { margin-top: 9rem; padding-top: 5rem; border-top: 1px solid rgb(255 255 255 / .08); }
+  .dimension-docs-intro { display: grid; grid-template-columns: .75fr 1.25fr; gap: 3rem; align-items: end; }
+  .dimension-docs-intro h2 { margin: 0; color: #e8fbff; font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 500; letter-spacing: -.055em; line-height: 1; }
+  .dimension-docs-intro > p:last-child { max-width: 26rem; color: #91b1bd; line-height: 1.7; }
+  .dimension-doc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2.5rem; }
+  .dimension-doc-card { min-height: 18rem; padding: 1.4rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1rem; background: rgb(255 255 255 / .025); }
+  .dimension-doc-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; color: #e8fbff; font-size: .9rem; font-weight: 600; }
+  .dimension-doc-card-heading button { padding: .35rem .55rem; border: 1px solid rgb(110 197 202 / .22); border-radius: .45rem; background: transparent; color: #6ec5ca; font-size: .65rem; cursor: pointer; transition: background .2s ease, border-color .2s ease; }
+  .dimension-doc-card-heading button:hover { border-color: rgb(110 197 202 / .6); background: rgb(110 197 202 / .08); }
+  .dimension-doc-card > p { min-height: 4.5rem; margin-top: 2rem; color: #91b1bd; font-size: .8rem; line-height: 1.65; }
+  .dimension-doc-card code, .dimension-doc-card pre { display: block; overflow-x: auto; margin-top: 1rem; padding: .85rem; border: 1px solid rgb(255 255 255 / .07); border-radius: .6rem; background: #080f14; color: #aee9e7; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .68rem; line-height: 1.65; white-space: pre; }
+  .dimension-doc-card pre code { overflow: visible; margin: 0; padding: 0; border: 0; background: transparent; }
+  .dimension-doc-about > p { min-height: 0; margin-top: 2rem; }
+  .dimension-doc-about a { display: inline-block; margin-top: 1.5rem; color: #6ec5ca; font-size: .78rem; text-decoration: none; }
+  .dimension-doc-about a:hover { color: #e8fbff; } .dimension-doc-about a b { margin-left: .35rem; font-weight: 400; }
+  .dimension-feature { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(2rem, 7vw, 7rem); align-items: center; }
+  .dimension-feature-copy h2, .dimension-section-heading h2, .dimension-component h2 { margin: 1rem 0; color: #e8fbff; font-size: clamp(2rem, 4vw, 3.6rem); font-weight: 500; letter-spacing: -.055em; line-height: 1; }
+  .dimension-feature-copy > p:not(.dimension-index), .dimension-component p:not(.dimension-index) { max-width: 25rem; color: #91b1bd; line-height: 1.7; }
+  .dimension-hint { display: block; margin-top: 2rem; color: #668993; font-size: .78rem; }
+  .dimension-hint b { color: #6ec5ca; font-size: 1rem; }
+  .dimension-stage { position: relative; min-height: 35rem; overflow: hidden; border: 1px solid rgb(110 197 202 / .22); border-radius: 1.5rem; background: #091117; perspective: 1100px; }
+  .dimension-stage-glow { position: absolute; inset: 10% 20%; background: radial-gradient(circle, rgb(22 184 189 / .18), transparent 65%); filter: blur(1rem); }
+  .dimension-grid { position: absolute; inset: 45% -20% -30%; opacity: .28; background-image: linear-gradient(rgb(110 197 202 / .25) 1px, transparent 1px), linear-gradient(90deg, rgb(110 197 202 / .25) 1px, transparent 1px); background-size: 2.5rem 2.5rem; transform: perspective(15rem) rotateX(62deg); }
+  .dimension-stage-inner { position: absolute; inset: 0; transform: rotateX(var(--scene-x, 0deg)) rotateY(var(--scene-y, 0deg)); transform-style: preserve-3d; transition: transform .2s ease-out; }
+  .dimension-ring { position: absolute; left: 50%; top: 50%; width: 20rem; height: 20rem; border: 1px solid rgb(110 197 202 / .25); border-radius: 50%; transform: translate(-50%, -50%) rotateX(70deg) translateZ(var(--depth, 0)); }
+  .dimension-ring-front { width: 15rem; height: 15rem; border-color: rgb(110 197 202 / .45); transform: translate(-50%, -50%) rotateY(60deg) rotateX(65deg) translateZ(5rem); }
+  .dimension-orbit { position: absolute; left: 50%; top: 50%; width: 26rem; height: 9rem; border: 1px solid rgb(110 197 202 / .24); border-radius: 50%; transform: translate(-50%, -50%) rotateZ(25deg) rotateX(68deg) translateZ(1rem); }
+  .orbit-two { transform: translate(-50%, -50%) rotateZ(-45deg) rotateX(68deg) translateZ(2rem); border-color: rgb(49 93 168 / .38); }
+  .dimension-object { position: absolute; left: 50%; top: 50%; width: 13rem; height: 15rem; transform: translate(-50%, -50%) translateZ(5rem) rotateX(-3deg) rotateY(-12deg); transform-style: preserve-3d; }
+  .dimension-object-front { position: absolute; inset: 1.5rem 0 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 1.5rem; border: 1px solid rgb(232 251 255 / .26); border-radius: 1rem; background: linear-gradient(140deg, rgb(49 93 168 / .42), rgb(10 32 42 / .9)); box-shadow: 1rem 1.4rem 3rem rgb(0 0 0 / .35); transform: translateZ(2rem); }
+  .dimension-object-front span { color: #6ec5ca; font-size: 1.8rem; font-weight: 700; letter-spacing: -.08em; }
+  .dimension-object-front strong { margin-top: 2rem; color: #e8fbff; font-size: 1.4rem; line-height: 1.05; }
+  .dimension-object-front small { margin-top: .7rem; color: #91b1bd; font-size: .65rem; }
+  .dimension-object-top { position: absolute; top: 0; left: 0; width: 13rem; height: 3rem; border: 1px solid rgb(232 251 255 / .22); border-radius: 1rem 1rem 0 0; background: rgb(110 197 202 / .2); transform: rotateX(70deg) translateY(-1.1rem) translateZ(1.3rem); transform-origin: bottom; }
+  .dimension-object-side { position: absolute; top: 1.5rem; right: -2rem; width: 2rem; height: 13.5rem; border: 1px solid rgb(110 197 202 / .2); background: rgb(49 93 168 / .22); transform: rotateY(90deg); transform-origin: left; }
+  .dimension-label { position: absolute; color: #668993; font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
+  .label-top { top: 18%; right: 14%; transform: translateZ(2rem); }
+  .label-bottom { bottom: 14%; left: 14%; transform: translateZ(2rem); }
+  .dimension-label span { color: #6ec5ca; }
+  .dimension-library { margin-top: 9rem; }
+  .dimension-section-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-bottom: 2.5rem; }
+  .dimension-section-heading h2 { max-width: 27rem; margin: 0; }
+  .dimension-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .dimension-card { min-height: 15rem; padding: 1.5rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1rem; background: rgb(255 255 255 / .025); transition: border-color .3s ease, transform .3s ease, background .3s ease; }
+  .dimension-card:hover { border-color: rgb(110 197 202 / .35); background: rgb(110 197 202 / .05); transform: translateY(-.35rem); }
+  .card-offset-one { transform: translateY(1.2rem); } .card-offset-one:hover { transform: translateY(.85rem); } .card-offset-two { transform: translateY(2.4rem); } .card-offset-two:hover { transform: translateY(2.05rem); }
+  .dimension-card p { margin-top: 4rem; color: #e8fbff; font-weight: 600; }
+  .dimension-card span { display: block; margin-top: .7rem; color: #668993; font-size: .82rem; line-height: 1.55; }
+  .card-link { display: block; text-decoration: none; }
+  .card-icon { display: flex; align-items: center; justify-content: center; width: 2.8rem; height: 2.8rem; color: #6ec5ca; border: 1px solid rgb(110 197 202 / .25); border-radius: .7rem; background: rgb(110 197 202 / .07); }
+  .card-icon-stack { position: relative; } .card-icon-stack i { position: absolute; width: 1.1rem; height: .8rem; border: 1px solid #6ec5ca; border-radius: .2rem; } .card-icon-stack i:nth-child(1) { transform: translateY(-.55rem); } .card-icon-stack i:nth-child(3) { transform: translateY(.55rem); }
+  .card-icon-orbit i { width: 1rem; height: 1.8rem; border: 1px solid #6ec5ca; border-radius: 50%; transform: rotate(45deg); }
+  .card-icon-frame { font-size: 1.3rem; }
+  .dimension-component { display: grid; grid-template-columns: .7fr 1.3fr; gap: 4rem; align-items: center; margin-top: 11rem; padding-top: 5rem; border-top: 1px solid rgb(255 255 255 / .08); }
+  .dimension-component-preview { min-width: 0; } .dimension-component-preview .perspective-stage { min-height: 20rem; }
+  .dimension-orb { position: absolute; z-index: -1; width: 22rem; height: 22rem; border: 1px solid rgb(110 197 202 / .08); border-radius: 50%; pointer-events: none; } .dimension-orb-one { top: 20rem; right: -13rem; } .dimension-orb-two { top: 49rem; left: -16rem; width: 30rem; height: 30rem; border-color: rgb(49 93 168 / .1); }
+  @media (max-width: 800px) { .dimension-page { padding-top: 4rem; } .dimension-hero { margin-bottom: 4rem; } .dimension-feature, .dimension-component { grid-template-columns: 1fr; gap: 2rem; } .dimension-stage { min-height: 28rem; } .dimension-cards, .dimension-doc-grid { grid-template-columns: 1fr; } .card-offset-one, .card-offset-two { transform: none; } .card-offset-one:hover, .card-offset-two:hover { transform: translateY(-.35rem); } .dimension-library, .dimension-docs { margin-top: 6rem; } .dimension-section-heading, .dimension-docs-intro { display: block; } .dimension-component { margin-top: 7rem; } .forge3d-explorer-grid { grid-template-columns: 1fr; } .forge3d-object-info { min-height: 18rem; border-top: 1px solid rgb(255 255 255 / .08); border-left: 0; } .forge3d-canvas-wrap { min-height: 27rem; } .forge3d-explorer-heading { align-items: start; flex-direction: column; } .dimension-docs-intro h2 { margin: 1rem 0; } }
+  @media (prefers-reduced-motion: reduce) { .dimension-stage-inner, .dimension-card, .dimension-explore, .dimension-hero, .dimension-feature { transition: none; } .forge3d-explorer.is-active { animation: none; opacity: 1; transform: none; } }
+</style>

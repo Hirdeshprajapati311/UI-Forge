@@ -1,4 +1,4 @@
-export type ComponentCategory = "Buttons" | "Cards" | "Text" | "Loaders";
+export type ComponentCategory = "Buttons" | "Cards" | "Text" | "Loaders" | "Navigation";
 
 export interface ComponentMeta {
   name: string;
@@ -62,6 +62,12 @@ export const components: ComponentMeta[] = [
     slug: "forge-loader",
     description: "Expressive loaders for measurable progress and continuous activity.",
     category: "Loaders",
+  },
+  {
+    name: "Spill Tabs",
+    slug: "spill-tabs",
+    description: "A tab navigation with a liquid paint indicator that flows between active tabs.",
+    category: "Navigation",
   },
 ];
 

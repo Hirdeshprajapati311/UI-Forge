@@ -12,6 +12,7 @@ import PerspectiveStageDemo from "../../components/demos/PerspectiveStageDemo";
 import RunawayButtonDemo from "../../components/demos/RunawayButtonDemo";
 import GuardedActionDemo from "../../components/demos/GuardedActionDemo";
 import ForgeLoaderDemo from "../../components/demos/ForgeLoaderDemo";
+import SpillTabsDemo from "../../components/demos/SpillTabsDemo";
 import { components } from "../../lib/components";
 
 export async function getStaticPaths() {
@@ -85,6 +86,8 @@ const docsClass = "docs-content";
           <GuardedActionDemo client:load />
         ) : component.slug === "forge-loader" ? (
           <ForgeLoaderDemo client:load />
+        ) : component.slug === "spill-tabs" ? (
+          <SpillTabsDemo client:load />
         ) : (
           <p class="text-sm text-zinc-500">Preview unavailable.</p>
         )}

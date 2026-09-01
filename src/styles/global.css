@@ -387,6 +387,196 @@ body.theme-brand {
   }
 }
 
+/* SpillTabs keeps the active state clear while letting the paint feel organic. */
+.spill-tabs {
+  --spill-paint: var(--brand-teal, #16b8bd);
+  position: relative;
+  width: 100%;
+}
+
+.spill-tabs-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  width: max-content;
+  max-width: 100%;
+  padding: 0.25rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 0.9rem;
+  background: rgb(255 255 255 / 0.025);
+}
+
+.spill-tabs-trigger {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.55rem 0.8rem;
+  border: 0;
+  border-radius: 0.65rem;
+  background: transparent;
+  color: var(--brand-muted, #91b1bd);
+  font: inherit;
+  font-size: 0.78rem;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 180ms ease;
+}
+
+.spill-tabs-trigger:hover,
+.spill-tabs-trigger.is-active {
+  color: var(--brand-ink, #e8fbff);
+}
+
+.spill-tabs-trigger:disabled,
+.spill-tabs-trigger[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.spill-tabs-trigger:focus-visible {
+  outline: 2px solid var(--spill-paint);
+  outline-offset: 3px;
+}
+
+.spill-tabs-paint {
+  position: absolute;
+  bottom: 0.05rem;
+  z-index: 0;
+  height: 0.18rem;
+  min-width: 1.25rem;
+  border-radius: 60% 40% 45% 55%;
+  background: var(--spill-paint);
+  box-shadow: 0 0.15rem 0.65rem color-mix(in srgb, var(--spill-paint) 30%, transparent);
+  transform: rotate(-1deg) scaleY(1);
+  transform-origin: center;
+  transition: left 360ms cubic-bezier(0.22, 1, 0.36, 1), width 360ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.spill-tabs-variant-paint .spill-tabs-paint {
+  background: color-mix(in srgb, var(--spill-paint) 88%, white);
+}
+
+.spill-tabs-paint::before,
+.spill-tabs-paint::after {
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  background: inherit;
+}
+
+.spill-tabs-paint::before {
+  right: 14%;
+  bottom: -0.06rem;
+  width: 35%;
+  height: 0.22rem;
+}
+
+.spill-tabs-paint::after {
+  left: 9%;
+  bottom: 0.02rem;
+  width: 16%;
+  height: 0.12rem;
+  opacity: 0.7;
+}
+
+.spill-tabs-paint.is-spilling {
+  animation: spill-tabs-flow 480ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes spill-tabs-flow {
+  0% { transform: rotate(-1deg) scaleX(1) scaleY(1); }
+  42% { transform: rotate(1deg) scaleX(var(--spill-distance, 1.5)) scaleY(1.55); }
+  72% { transform: rotate(-2deg) scaleX(0.92) scaleY(0.82); }
+  100% { transform: rotate(-1deg) scaleX(1) scaleY(1); }
+}
+
+.spill-tabs-navigation {
+  width: auto;
+}
+
+.spill-tabs-navigation .spill-tabs-list {
+  gap: 0.2rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.spill-tabs-navigation .spill-tabs-trigger {
+  min-height: 2rem;
+  padding: 0.45rem 0.65rem;
+}
+
+.spill-tabs-navigation .spill-tabs-paint {
+  bottom: -0.2rem;
+  height: 0.12rem;
+}
+
+.spill-tabs-demo {
+  padding: 1.25rem;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 0.025);
+}
+
+.spill-tabs-demo-content {
+  min-height: 9rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 0.8rem;
+  background: rgb(9 17 23 / 0.7);
+}
+
+.spill-tabs-demo-content span {
+  color: var(--brand-teal, #16b8bd);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.spill-tabs-demo-content h3 {
+  margin-top: 0.75rem;
+  color: var(--brand-ink, #e8fbff);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.spill-tabs-demo-content p {
+  max-width: 30rem;
+  margin-top: 0.5rem;
+  color: var(--brand-muted, #91b1bd);
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .spill-tabs-list {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .spill-tabs-trigger {
+    flex: 0 0 auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spill-tabs-trigger,
+  .spill-tabs-paint {
+    transition: none;
+  }
+
+  .spill-tabs-paint.is-spilling {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .runaway-button {
     transition: none;

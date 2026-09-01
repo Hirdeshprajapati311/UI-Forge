@@ -1,4 +1,7 @@
 ---
+import SpillTabs from "../ui/SpillTabs";
+
+const activePath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
@@ -19,19 +22,18 @@
       <span>UI Forge</span>
     </a>
 
-    <div class="hidden items-center gap-6 text-sm text-zinc-400 md:flex">
-      <a href="/components" class="transition-colors hover:text-white">
-        Components
-      </a>
-
-      <a href="/docs" class="transition-colors hover:text-white">
-        Docs
-      </a>
-
-      <a href="/about" class="transition-colors hover:text-white">
-        About
-      </a>
-    </div>
+    <SpillTabs
+      client:load
+      mode="navigation"
+      value={activePath}
+      className="hidden md:block"
+      items={[
+        { label: "Components", value: "/components", href: "/components" },
+        { label: "Docs", value: "/docs", href: "/docs" },
+        { label: "ForgeX3D", value: "/3d", href: "/3d" },
+        { label: "About", value: "/about", href: "/about" },
+      ]}
+    />
 
     <a
       href="https://github.com"

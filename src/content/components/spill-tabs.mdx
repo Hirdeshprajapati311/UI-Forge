@@ -1,0 +1,65 @@
+---
+title: Spill Tabs
+description: A tab navigation component with a liquid paint indicator that flows between active tabs.
+---
+
+# Spill Tabs
+
+Spill Tabs is a reusable tab and navigation interface with a restrained paint-like indicator. The indicator measures each tab and flows from the previous selection to the next one.
+
+## Installation
+
+```bash
+npx forgexui add spill-tabs
+```
+
+## Usage
+
+```tsx
+import SpillTabs from "@/components/ui/SpillTabs";
+
+const items = [
+  { label: "Overview", value: "overview" },
+  { label: "Components", value: "components" },
+  { label: "Docs", value: "docs" },
+];
+
+export function Example() {
+  const [activeTab, setActiveTab] = useState("overview");
+
+  return (
+    <SpillTabs
+      items={items}
+      value={activeTab}
+      onValueChange={setActiveTab}
+      variant="ink"
+    />
+  );
+}
+```
+
+For site navigation, use `mode="navigation"` and provide `href` values. The component keeps normal link navigation while adding the active paint indicator.
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` | `SpillTabItem[]` | required | Tab items with `label`, `value`, and optional `disabled` or `href` |
+| `value` | `string` | first enabled item | Controlled active value |
+| `defaultValue` | `string` | first enabled item | Initial value for uncontrolled usage |
+| `onValueChange` | `(value: string) => void` | - | Called when the active item changes |
+| `mode` | `"tabs" \| "navigation"` | `"tabs"` | Uses semantic tabs or normal navigation links |
+| `variant` | `"ink" \| "paint"` | `"ink"` | Visual indicator treatment; Ink is the current ForgeXUI variant |
+| `disabled` | `boolean` | `false` | Disables every item |
+| `className` | `string` | `""` | Additional classes for the root |
+| `paintClassName` | `string` | `""` | Additional classes for the paint indicator |
+
+## Behavior
+
+The indicator uses the actual dimensions and position of the selected item. Short moves create a compact spill, while longer jumps stretch the paint slightly during travel before it settles underneath the new item.
+
+## Accessibility
+
+Default tabs use `tablist` and `tab` semantics, arrow-key navigation, selected state, disabled state, and visible focus styles. Navigation mode uses real links so browser navigation, open-in-new-tab behavior, and the current-page indicator remain available.
+
+The animation is visual only. With `prefers-reduced-motion: reduce`, the indicator moves directly to the selected item while retaining its static paint shape.

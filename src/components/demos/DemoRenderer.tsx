@@ -9,6 +9,7 @@ import PerspectiveStageDemo from "./PerspectiveStageDemo";
 import RunawayButtonDemo from "./RunawayButtonDemo";
 import GuardedActionDemo from "./GuardedActionDemo";
 import ForgeLoaderDemo from "./ForgeLoaderDemo";
+import SpillTabsDemo from "./SpillTabsDemo";
 
 const demos: Record<string, ComponentType> = {
   "magnetic-button": MagneticButtonDemo,
@@ -20,6 +21,7 @@ const demos: Record<string, ComponentType> = {
   "runaway-button": RunawayButtonDemo,
   "guarded-action": GuardedActionDemo,
   "forge-loader": ForgeLoaderDemo,
+  "spill-tabs": SpillTabsDemo,
 };
 
 interface DemoRendererProps {
