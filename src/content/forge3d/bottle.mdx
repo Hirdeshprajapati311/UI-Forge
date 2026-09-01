@@ -1,0 +1,74 @@
+---
+title: Bottle
+description: A procedural 3D bottle model with customizable colors and animations.
+---
+
+# Bottle
+
+Bottle is a procedural 3D dispenser model built from standard Three.js geometry. It is designed for product scenes, interface previews, and interactive model collections.
+
+## Installation
+
+```bash
+npx forgexui add bottle
+```
+
+Install the ForgeX3D runtime dependencies if your project does not already include them:
+
+```bash
+npm install three @react-three/fiber @react-three/drei
+```
+
+## Usage
+
+```tsx
+import { Forge3DCanvas, Forge3DScene } from "@/components/forge3d/core";
+import { Bottle } from "@/components/forge3d/models";
+
+export function BottleScene() {
+  return (
+    <Forge3DCanvas>
+      <Forge3DScene>
+        <Bottle
+          height={3}
+          radius={0.5}
+          rotationSpeed={0.15}
+          interactive
+        />
+      </Forge3DScene>
+    </Forge3DCanvas>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `height` | `number` | `3` | Height of the bottle body |
+| `radius` | `number` | `0.5` | Radius of the bottle body |
+| `colorScheme` | `BottleColorScheme` | Built-in palette | Colors for the bottle surfaces |
+| `glassMaterial` | `MeshPhysicalMaterialProps` | Built-in material | Overrides for the transparent body material |
+| `animate` | `boolean` | `true` | Enables rotation and floating motion |
+| `floatingHeight` | `number` | `0.05` | Vertical travel during floating motion |
+| `rotationSpeed` | `number` | `0.15` | Rotation animation speed |
+| `showLabel` | `boolean` | `true` | Reserved label visibility option |
+| `labelText` | `string` | `ASHAMPOO` | Reserved label text option |
+
+## Color Scheme
+
+```tsx
+<Bottle
+  colorScheme={{
+    body: "#4fa9c9",
+    cap: "#1a7a9c",
+    neck: "#2c3e50",
+    nozzle: "#2c3e50",
+    nozzleTip: "#34495e",
+    ring: "#2a9bc9",
+    accent: "#3a5a7a",
+    label: "#b8e2f0",
+  }}
+  animate={false}
+/>
+```

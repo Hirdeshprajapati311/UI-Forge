@@ -26,8 +26,15 @@ export default function Forge3DModelPreview({ slug }: Forge3DModelPreviewProps) 
     { className: "forge3d-model-preview" },
     React.createElement(
       Forge3DCanvas,
-      { className: "forge3d-model-preview-canvas", cameraZ: 4.2 },
-      React.createElement(Forge3DScene, null, React.createElement(model.component, { ...model.props, interactive: true, reducedMotion })),
+      {
+        className: "forge3d-model-preview-canvas",
+        cameraZ: 4.2,
+        children: React.createElement(
+          Forge3DScene,
+          null,
+          React.createElement(model.component, { ...model.props, interactive: true, reducedMotion }),
+        ),
+      },
     ),
     React.createElement("span", { className: "forge3d-model-preview-hint" }, "Move your pointer across the model"),
   );

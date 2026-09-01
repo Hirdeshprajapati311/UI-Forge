@@ -8,9 +8,9 @@ const categories: Forge3DUIType[] = ["Effects", "Navigations", "Buttons", "Cards
 <Layout title="3D UI | ForgeX3D" description="Interactive 3D interface components from ForgeX3D.">
   <section class="forge3d-ui-page">
     <header class="forge3d-ui-hero">
-      <a href="/3d" class="forge3d-library-back">← Back to ForgeX3D</a>
+      <a href="/3d" class="forge3d-library-back">&larr; Back to ForgeX3D</a>
       <p class="dimension-index">ForgeX3D / 3D UI</p>
-      <h1>Interface,<br /><em>in orbit.</em></h1>
+      <h1>Interface,<br /><em>in motion.</em></h1>
       <p>Dimensional UI components for navigation, effects, buttons, and cards. Designed to make interaction feel tangible without getting in the way.</p>
     </header>
     <div class="forge3d-ui-categories">
@@ -20,10 +20,22 @@ const categories: Forge3DUIType[] = ["Effects", "Navigations", "Buttons", "Cards
       {forge3DUIElements.map((element, index) => (
         <a class="forge3d-ui-card" href={`/3d/components/${element.slug}`}>
           <div class="forge3d-ui-card-meta"><span>{String(index + 1).padStart(2, "0")}</span><span>{element.category}</span></div>
-          <div class="forge3d-ui-card-visual"><div class="forge3d-ui-visual-orbit"></div><div class="forge3d-ui-visual-dot"></div></div>
+          <div class="forge3d-ui-card-visual">
+            <div class="forge3d-ui-visual-dock" aria-hidden="true">
+              <div class="forge3d-ui-visual-dock-glow"></div>
+              <div class="forge3d-ui-visual-dock-track"></div>
+              <div class="forge3d-ui-visual-dock-items">
+                <span class="is-active">Home</span>
+                <span>Components</span>
+                <span>3D Models</span>
+                <span>Docs</span>
+              </div>
+              <div class="forge3d-ui-visual-dock-carriage"></div>
+            </div>
+          </div>
           <h2>{element.title}</h2>
           <p>{element.description}</p>
-          <span class="forge3d-ui-card-link">View component <b>↗</b></span>
+          <span class="forge3d-ui-card-link">View component <b>-></b></span>
         </a>
       ))}
       <div class="forge3d-ui-coming-soon"><span>More dimensions ahead</span><p>New 3D UI components will appear here as they are forged.</p></div>
@@ -46,9 +58,18 @@ const categories: Forge3DUIType[] = ["Effects", "Navigations", "Buttons", "Cards
   .forge3d-ui-card:hover { border-color: rgb(110 197 202 / .4); background: rgb(110 197 202 / .04); transform: translateY(-.3rem); }
   .forge3d-ui-card-meta { display: flex; justify-content: space-between; color: #668993; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
   .forge3d-ui-card-meta span:first-child { color: #6ec5ca; }
-  .forge3d-ui-card-visual { position: relative; display: grid; min-height: 17rem; place-items: center; overflow: hidden; margin-top: 1rem; border: 1px solid rgb(110 197 202 / .12); border-radius: .8rem; background: radial-gradient(circle, rgb(49 93 168 / .18), transparent 60%), #091117; }
-  .forge3d-ui-visual-orbit { width: 15rem; height: 5rem; border: 1px solid rgb(110 197 202 / .4); border-radius: 50%; transform: rotateX(68deg) rotateZ(-20deg); }
-  .forge3d-ui-visual-dot { position: absolute; width: .8rem; height: .8rem; border: 1px solid #d2ffff; border-radius: 50%; background: #16b8bd; box-shadow: 0 0 1.2rem rgb(22 184 189 / .7); transform: translate(4rem, -1.6rem); }
+  .forge3d-ui-card-visual { position: relative; display: grid; min-height: 17rem; place-items: center; overflow: hidden; margin-top: 1rem; border: 1px solid rgb(110 197 202 / .12); border-radius: .8rem; background:
+    radial-gradient(circle at 50% 35%, rgb(49 93 168 / .22), transparent 32%),
+    radial-gradient(circle at 50% 15%, rgb(22 184 189 / .12), transparent 22rem),
+    linear-gradient(180deg, rgb(7 13 20 / .88), #091117 60%);
+  }
+  .forge3d-ui-visual-dock { position: relative; width: min(20rem, 80%); height: 8rem; }
+  .forge3d-ui-visual-dock-glow { position: absolute; inset: 1.5rem 3rem auto; height: 3rem; border-radius: 50%; background: radial-gradient(circle, rgb(22 184 189 / .3), transparent 70%); filter: blur(12px); }
+  .forge3d-ui-visual-dock-track { position: absolute; left: 50%; bottom: 1.45rem; width: 100%; height: 1.4rem; transform: translateX(-50%); border: 1px solid rgb(110 197 202 / .42); border-radius: 999px; background: linear-gradient(180deg, rgb(255 255 255 / .05), rgb(255 255 255 / .01)); box-shadow: inset 0 0 0 1px rgb(49 93 168 / .18); }
+  .forge3d-ui-visual-dock-items { position: absolute; inset: 0 0 2.6rem; display: grid; grid-template-columns: repeat(4, 1fr); align-items: end; gap: .35rem; }
+  .forge3d-ui-visual-dock-items span { display: grid; place-items: center; min-height: 2.2rem; padding: 0 .45rem; border: 1px solid rgb(255 255 255 / .08); border-radius: .75rem; color: #91b1bd; font-size: .6rem; letter-spacing: .08em; text-transform: uppercase; background: rgb(255 255 255 / .02); backdrop-filter: blur(4px); }
+  .forge3d-ui-visual-dock-items .is-active { border-color: rgb(110 197 202 / .4); color: #e8fbff; box-shadow: 0 .4rem 1.2rem rgb(22 184 189 / .14); }
+  .forge3d-ui-visual-dock-carriage { position: absolute; left: 50%; bottom: 1rem; width: 5.5rem; height: 2rem; transform: translateX(-50%); border: 1px solid rgb(210 255 255 / .6); border-radius: 999px; background: linear-gradient(180deg, rgb(110 197 202 / .95), rgb(49 93 168 / .72)); box-shadow: 0 .8rem 1.5rem rgb(22 184 189 / .25), 0 0 0 .5rem rgb(22 184 189 / .08); }
   .forge3d-ui-card h2 { margin-top: 1.3rem; color: #e8fbff; font-size: 1.2rem; font-weight: 600; }
   .forge3d-ui-card p { margin-top: .5rem; color: #91b1bd; font-size: .8rem; line-height: 1.6; }
   .forge3d-ui-card-link { display: inline-block; margin-top: 1.2rem; color: #6ec5ca; font-size: .75rem; }

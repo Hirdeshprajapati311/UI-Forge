@@ -52,9 +52,15 @@ export default function Forge3DExplorer() {
       React.createElement(
         "div",
         { className: "forge3d-canvas-wrap" },
-        React.createElement(Forge3DCanvas, { className: "forge3d-canvas", cameraZ: 4.2 },
-          activeElement && React.createElement(Forge3DScene, null, React.createElement(activeElement.component, { ...activeElement.props, interactive: true, reducedMotion })),
-        ),
+        React.createElement(Forge3DCanvas, {
+          className: "forge3d-canvas",
+          cameraZ: 4.2,
+          children: activeElement && React.createElement(
+            Forge3DScene,
+            null,
+            React.createElement(activeElement.component, { ...activeElement.props, interactive: true, reducedMotion }),
+          ),
+        }),
         React.createElement("span", { className: "forge3d-canvas-label" }, "Pointer responsive"),
       ),
       React.createElement(
