@@ -1,0 +1,60 @@
+---
+title: ForgeDock
+description: A precision docking indicator that travels with the active navigation destination.
+---
+
+# ForgeDock
+
+ForgeDock is a practical 3D active-navigation enhancement. A small machined carriage sits underneath the selected item, travels with subtle momentum when the destination changes, and compresses into its dock when it lands.
+
+## Installation
+
+```bash
+npx forgexui add forge-dock
+```
+
+## Usage
+
+```tsx
+import ForgeDock from "@/components/forge3d/components/ForgeDock";
+
+const items = [
+  { label: "Home", value: "home", href: "/" },
+  { label: "Models", value: "models", href: "/models" },
+  { label: "Docs", value: "docs", href: "/docs" },
+];
+
+<ForgeDock
+  mode="navigation"
+  items={items}
+  activeId="models"
+/>
+```
+
+For content tabs, omit `mode`, use `value` or `defaultValue`, and provide `onChange` or `onValueChange`.
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `items` | `ForgeDockItem[]` | required | Items with `label`, `value`, and optional `href` or `disabled` |
+| `activeId` | `string` | first enabled item | Alias for the controlled active value |
+| `value` | `string` | first enabled item | Controlled active value |
+| `defaultValue` | `string` | first enabled item | Initial uncontrolled value |
+| `onChange` | `(value: string) => void` | - | Called when the active value changes |
+| `onValueChange` | `(value: string) => void` | - | Alternative controlled change callback |
+| `mode` | `"tabs" \| "navigation"` | `"tabs"` | Semantic tabs or normal navigation links |
+| `disabled` | `boolean` | `false` | Disables the whole component |
+| `className` | `string` | `""` | Additional classes for the root |
+
+## Behavior
+
+ForgeDock measures real tab dimensions, so it works with different labels and responsive layouts. When the active item changes, the carriage travels to the new position, tilts subtly, compresses on impact, and settles into a quiet idle motion.
+
+## Accessibility
+
+The default mode uses semantic tabs, selected state, disabled state, arrow-key navigation, and visible focus styles. Navigation mode uses real links and exposes the current page through `aria-current`. The 3D object is decorative and never replaces the text-based active state.
+
+## Reduced motion
+
+With `prefers-reduced-motion: reduce`, continuous idle motion and docking animation are disabled. The indicator remains visible and moves directly to the active item.

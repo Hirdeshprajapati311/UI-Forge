@@ -544,6 +544,32 @@ body.theme-brand {
   color: var(--brand-ink, #e8fbff);
 }
 
+.forge-dock { --forge-dock-accent: var(--brand-teal, #16b8bd); position: relative; width: 100%; }
+.forge-dock-list { position: relative; display: flex; align-items: center; gap: .25rem; width: max-content; max-width: 100%; padding: .25rem; }
+.forge-dock-trigger { position: relative; z-index: 1; display: inline-flex; align-items: center; min-height: 2.2rem; padding: .5rem .7rem; border: 0; border-radius: .6rem; background: transparent; color: var(--brand-muted, #91b1bd); font: inherit; font-size: .76rem; text-decoration: none; white-space: nowrap; cursor: pointer; transition: color 180ms ease; }
+.forge-dock-trigger:hover, .forge-dock-trigger.is-active { color: var(--brand-ink, #e8fbff); }
+.forge-dock-trigger:disabled, .forge-dock-trigger[aria-disabled="true"] { cursor: not-allowed; opacity: .4; }
+.forge-dock-trigger:focus-visible { outline: 2px solid var(--forge-dock-accent); outline-offset: 3px; }
+.forge-dock-indicator { position: absolute; bottom: -.05rem; left: 0; z-index: 0; display: block; height: 1rem; pointer-events: none; transform: translateX(-50%); transition: left 540ms cubic-bezier(.22, 1, .36, 1); }
+.forge-dock-rail { position: absolute; top: .72rem; left: 50%; width: 2.4rem; height: .18rem; border-radius: 1rem; background: #263f43; box-shadow: inset 0 0 0 1px rgb(183 244 245 / .2); transform: translateX(-50%); }
+.forge-dock-housing { position: absolute; top: .45rem; left: 50%; width: 1rem; height: .6rem; border: 1px solid rgb(183 244 245 / .5); border-radius: .22rem; background: linear-gradient(150deg, #6d9695, #1b3a40 58%, #0b1d24); box-shadow: inset 0 .08rem 0 rgb(255 255 255 / .25), 0 .14rem .4rem rgb(0 0 0 / .4); transform: translateX(-50%); }
+.forge-dock-module { position: absolute; top: .27rem; left: 50%; width: .5rem; height: .5rem; border: 1px solid #d2ffff; border-radius: .12rem; background: var(--forge-dock-accent); box-shadow: 0 0 .55rem rgb(22 184 189 / .55); transform: translateX(-50%) rotate(45deg); animation: forge-dock-idle 2.6s ease-in-out infinite; }
+.forge-dock-indicator.is-docking .forge-dock-housing { animation: forge-dock-land 620ms cubic-bezier(.22, 1, .36, 1); }
+.forge-dock-indicator.is-docking .forge-dock-module { animation: forge-dock-arrive 620ms cubic-bezier(.22, 1, .36, 1); }
+.forge-dock-navigation { width: auto; }
+.forge-dock-navigation .forge-dock-list { gap: .1rem; padding: 0; }
+.forge-dock-navigation .forge-dock-trigger { min-height: 2rem; padding: .45rem .65rem; }
+.forge-dock-navigation .forge-dock-indicator { bottom: -.38rem; }
+@keyframes forge-dock-idle { 0%, 100% { margin-top: 0; } 50% { margin-top: -.1rem; } }
+@keyframes forge-dock-land { 0% { transform: translateX(-50%) scaleY(1); } 58% { transform: translateX(-50%) scaleY(.58); } 78% { transform: translateX(-50%) scaleY(1.08); } 100% { transform: translateX(-50%) scaleY(1); } }
+@keyframes forge-dock-arrive { 0% { transform: translateX(-50%) rotate(45deg) scale(.72); } 55% { transform: translateX(-50%) rotate(45deg) scale(1.16); } 100% { transform: translateX(-50%) rotate(45deg) scale(1); } }
+.forge-dock-demo { padding: 1.25rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1rem; background: rgb(255 255 255 / .025); }
+.forge-dock-demo-copy { min-height: 9rem; margin-top: 1.5rem; padding: 1.5rem; border: 1px solid rgb(255 255 255 / .08); border-radius: .8rem; background: #091117; }
+.forge-dock-demo-copy span { color: var(--brand-teal, #16b8bd); font-size: .65rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+.forge-dock-demo-copy h3 { margin-top: .75rem; color: var(--brand-ink, #e8fbff); font-size: 1.25rem; font-weight: 600; }
+.forge-dock-demo-copy p { max-width: 30rem; margin-top: .5rem; color: var(--brand-muted, #91b1bd); font-size: .85rem; line-height: 1.6; }
+@media (prefers-reduced-motion: reduce) { .forge-dock-trigger, .forge-dock-indicator { transition: none; } .forge-dock-module, .forge-dock-indicator.is-docking .forge-dock-housing, .forge-dock-indicator.is-docking .forge-dock-module { animation: none; } }
+
 .spill-tabs-demo {
   padding: 1.25rem;
   border: 1px solid rgb(255 255 255 / 0.1);

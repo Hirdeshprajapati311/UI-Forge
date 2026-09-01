@@ -1,10 +1,12 @@
 ---
 import SpillTabs from "../ui/SpillTabs";
+import ForgeDock from "../forge3d/components/ForgeDock";
 
 const activePath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
 const isForge3D = Astro.url.pathname.startsWith("/3d");
 const isForge3DModels = Astro.url.pathname.startsWith("/3d/models");
 const isForge3DDocs = Astro.url.pathname.startsWith("/3d/docs");
+const isForge3DComponents = Astro.url.pathname.startsWith("/3d/components");
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
@@ -27,8 +29,17 @@ const isForge3DDocs = Astro.url.pathname.startsWith("/3d/docs");
 
     {isForge3D ? (
       <div class="hidden items-center gap-6 text-sm md:flex">
-        <a href="/3d/models" class={`forge3d-nav-link${isForge3DModels ? " is-active" : ""}`}>Models</a>
-        <a href="/3d/docs" class={`forge3d-nav-link${isForge3DDocs ? " is-active" : ""}`}>Docs</a>
+        <ForgeDock
+          client:load
+          mode="navigation"
+          value={isForge3D ? (isForge3DComponents ? "/3d/components" : isForge3DModels ? "/3d/models" : isForge3DDocs ? "/3d/docs" : "") : ""}
+          className="forge3d-header-orbit"
+          items={[
+            { label: "3D UI", value: "/3d/components", href: "/3d/components" },
+            { label: "Models", value: "/3d/models", href: "/3d/models" },
+            { label: "Docs", value: "/3d/docs", href: "/3d/docs" },
+          ]}
+        />
         <a href="/" class="forge3d-back-link">UI Forge</a>
       </div>
     ) : (

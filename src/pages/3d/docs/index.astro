@@ -2,7 +2,12 @@
 import { getCollection } from "astro:content";
 import Layout from "../../../layouts/Layout.astro";
 
-const docs = await getCollection("forge3d");
+const modelDocs = await getCollection("forge3d");
+const uiDocs = await getCollection("forge3dui");
+const docs = [
+  ...modelDocs.map((doc) => ({ doc, href: `/3d/models/${doc.id}`, group: "Models" })),
+  ...uiDocs.map((doc) => ({ doc, href: `/3d/components/${doc.id}`, group: "3D UI" })),
+];
 ---
 
 <Layout
@@ -18,12 +23,12 @@ const docs = await getCollection("forge3d");
     </header>
 
     <div class="forge3d-docs-list">
-      {docs.map((doc, index) => (
-        <a href={`/3d/models/${doc.id}`} class="forge3d-docs-card">
+      {docs.map(({ doc, href, group }, index) => (
+        <a href={href} class="forge3d-docs-card">
           <span>{String(index + 1).padStart(2, "0")}</span>
           <div>
             <h2>{doc.data.title}</h2>
-            <p>{doc.data.description}</p>
+            <p><b>{group}</b> · {doc.data.description}</p>
           </div>
           <b>↗</b>
         </a>

@@ -25,7 +25,19 @@ const forge3d = defineCollection({
   }),
 });
 
+const forge3dui = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/forge3dui",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
 export const collections = {
   components,
   forge3d,
+  forge3dui,
 };
