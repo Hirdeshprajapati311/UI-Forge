@@ -1,0 +1,68 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { forge3DElements } from "../../../components/forge3d/registry";
+---
+
+<Layout
+  title="Models | ForgeX3D"
+  description="Explore procedural 3D models built for ForgeX3D."
+>
+  <section class="forge3d-library-page">
+    <header class="forge3d-library-hero">
+      <a href="/3d" class="forge3d-library-back">← Back to ForgeX3D</a>
+      <p class="dimension-index">ForgeX3D / Models</p>
+      <h1>Objects built<br /><em>for depth.</em></h1>
+      <p>Explore the growing ForgeX3D model library. Each object is procedural, configurable, and ready to bring into your own interface.</p>
+    </header>
+
+    <div class="forge3d-model-grid">
+      {forge3DElements.map((element, index) => (
+        <article class="forge3d-model-card">
+          <div class="forge3d-model-card-top">
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <span>{element.category}</span>
+          </div>
+          <div class="forge3d-model-visual" aria-hidden="true">
+            <div class="forge3d-model-orbit"></div>
+            <div class="forge3d-model-core"></div>
+          </div>
+          <div class="forge3d-model-card-copy">
+            <h2>{element.title}</h2>
+            <p>{element.description}</p>
+            <a href={`/3d/models/${element.slug}`} class="forge3d-model-link">View model <b>↗</b></a>
+          </div>
+        </article>
+      ))}
+      <div class="forge3d-model-coming-soon">
+        <span>Next in the collection</span>
+        <p>More procedural models are being forged.</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style is:global>
+  .forge3d-library-page { min-height: 70vh; padding: 5rem max(1.5rem, calc((100vw - 76rem) / 2)) 8rem; background: radial-gradient(circle at 70% 15%, rgb(22 184 189 / .08), transparent 28rem); }
+  .forge3d-library-hero { max-width: 44rem; }
+  .forge3d-library-back { display: inline-block; margin-bottom: 5rem; color: #668993; font-size: .75rem; text-decoration: none; transition: color .2s ease; }
+  .forge3d-library-back:hover { color: #e8fbff; }
+  .forge3d-library-hero h1 { margin: 1.2rem 0; color: #e8fbff; font-size: clamp(3.2rem, 8vw, 7rem); font-weight: 500; letter-spacing: -.075em; line-height: .9; }
+  .forge3d-library-hero h1 em { color: #6ec5ca; font-style: normal; }
+  .forge3d-library-hero > p:last-child { max-width: 34rem; color: #91b1bd; line-height: 1.75; }
+  .forge3d-model-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin-top: 6rem; }
+  .forge3d-model-card, .forge3d-model-coming-soon { min-height: 31rem; padding: 1.3rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.2rem; background: rgb(255 255 255 / .025); }
+  .forge3d-model-card-top { display: flex; justify-content: space-between; color: #668993; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; }
+  .forge3d-model-visual { position: relative; display: grid; min-height: 19rem; place-items: center; overflow: hidden; margin-top: 1rem; border: 1px solid rgb(110 197 202 / .12); border-radius: .8rem; background: radial-gradient(circle, rgb(49 93 168 / .2), transparent 55%), #091117; }
+  .forge3d-model-orbit { position: absolute; width: 15rem; height: 5rem; border: 1px solid rgb(110 197 202 / .4); border-radius: 50%; transform: rotateX(68deg) rotateZ(-20deg); }
+  .forge3d-model-core { width: 6.5rem; height: 6.5rem; border: 1px solid rgb(184 247 246 / .45); border-radius: 46% 54% 50% 50%; background: radial-gradient(circle at 35% 28%, #b7f4f5, #16a0ac 20%, #0a3848 70%); box-shadow: 0 0 2rem rgb(22 184 189 / .24); transform: rotate(-14deg); }
+  .forge3d-model-card-copy { padding: 1.3rem .2rem .2rem; }
+  .forge3d-model-card-copy h2 { color: #e8fbff; font-size: 1.2rem; font-weight: 600; }
+  .forge3d-model-card-copy p { max-width: 28rem; margin-top: .5rem; color: #91b1bd; font-size: .8rem; line-height: 1.6; }
+  .forge3d-model-link { display: inline-block; margin-top: 1.3rem; color: #6ec5ca; font-size: .75rem; text-decoration: none; }
+  .forge3d-model-link:hover { color: #e8fbff; }
+  .forge3d-model-link b { margin-left: .3rem; font-weight: 400; }
+  .forge3d-model-coming-soon { display: flex; flex-direction: column; justify-content: end; border-style: dashed; color: #668993; }
+  .forge3d-model-coming-soon span { color: #6ec5ca; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }
+  .forge3d-model-coming-soon p { margin-top: .8rem; color: #91b1bd; font-size: 1rem; }
+  @media (max-width: 700px) { .forge3d-model-grid { grid-template-columns: 1fr; margin-top: 4rem; } .forge3d-library-back { margin-bottom: 3.5rem; } }
+</style>

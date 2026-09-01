@@ -1,0 +1,65 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import CodeCopyButtons from "../../../components/docs/CodeCopyButtons.astro";
+import Forge3DModelPreview from "../../../components/forge3d/demos/Forge3DModelPreview";
+import { forge3DElements } from "../../../components/forge3d/registry";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("forge3d");
+  return forge3DElements.map((model) => {
+    const doc = docs.find((entry) => entry.id === model.slug);
+    return { params: { slug: model.slug }, props: { model, doc } };
+  });
+}
+
+const { model, doc } = Astro.props;
+const renderedDoc = doc ? await render(doc) : null;
+const Content = renderedDoc?.Content;
+---
+
+<Layout title={`${model.title} | ForgeX3D`} description={model.description}>
+  <article class="forge3d-model-detail">
+    <a href="/3d/models" class="forge3d-library-back">← Back to models</a>
+    <header class="forge3d-model-detail-heading">
+      <div>
+        <p class="dimension-index">ForgeX3D / {model.category}</p>
+        <h1>{model.title}</h1>
+        <p>{model.description}</p>
+      </div>
+      <span class="forge3d-model-detail-index">Model / {model.slug}</span>
+    </header>
+
+    <section class="forge3d-model-detail-preview" aria-labelledby="preview-title">
+      <div class="forge3d-model-detail-preview-heading">
+        <h2 id="preview-title">Preview</h2>
+        <span>Interactive model</span>
+      </div>
+      <Forge3DModelPreview client:load slug={model.slug} />
+    </section>
+
+    <div class="docs-content forge3d-model-detail-docs">
+      {Content ? <Content /> : <p>Documentation is unavailable.</p>}
+    </div>
+  </article>
+</Layout>
+
+<CodeCopyButtons />
+
+<style is:global>
+  .forge3d-model-detail { max-width: 64rem; margin: 0 auto; padding: 5rem 1.5rem 8rem; }
+  .forge3d-model-detail-heading { display: flex; align-items: end; justify-content: space-between; gap: 2rem; margin-top: 4rem; }
+  .forge3d-model-detail-heading h1 { margin: 1rem 0; color: #e8fbff; font-size: clamp(3rem, 7vw, 6rem); font-weight: 500; letter-spacing: -.075em; line-height: .9; }
+  .forge3d-model-detail-heading > div > p:last-child { max-width: 32rem; color: #91b1bd; line-height: 1.7; }
+  .forge3d-model-detail-index { color: #668993; font-size: .65rem; letter-spacing: .12em; text-transform: uppercase; }
+  .forge3d-model-detail-preview { margin-top: 5rem; padding: 1rem; border: 1px solid rgb(110 197 202 / .18); border-radius: 1.2rem; background: rgb(255 255 255 / .025); }
+  .forge3d-model-detail-preview-heading { display: flex; align-items: center; justify-content: space-between; padding: .5rem .5rem 1rem; }
+  .forge3d-model-detail-preview-heading h2 { color: #e8fbff; font-size: .8rem; font-weight: 600; }
+  .forge3d-model-detail-preview-heading span { color: #668993; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+  .forge3d-model-preview { position: relative; min-height: 28rem; overflow: hidden; border-radius: .8rem; background: radial-gradient(circle at 50% 45%, rgb(49 93 168 / .18), transparent 32rem), #091117; background-image: linear-gradient(rgb(110 197 202 / .045) 1px, transparent 1px), linear-gradient(90deg, rgb(110 197 202 / .045) 1px, transparent 1px); background-size: 4rem 4rem; }
+  .forge3d-model-preview-canvas { position: absolute !important; inset: 0; }
+  .forge3d-model-preview-hint { position: absolute; bottom: 1rem; left: 1rem; color: #668993; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; }
+  .forge3d-model-detail-docs { margin-top: 5rem; padding: 2rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.2rem; background: rgb(255 255 255 / .025); }
+  @media (min-width: 640px) { .forge3d-model-detail-docs { padding: 3.5rem; } }
+  @media (max-width: 700px) { .forge3d-model-detail-heading { align-items: start; flex-direction: column; } .forge3d-model-detail-index { display: none; } .forge3d-model-preview { min-height: 23rem; } }
+</style>

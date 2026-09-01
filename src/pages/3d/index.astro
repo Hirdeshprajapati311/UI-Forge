@@ -173,6 +173,7 @@ import Forge3DExplorer from "../../components/forge3d/demos/Forge3DExplorer";
 
   explore?.addEventListener("click", () => setExploration(true));
   document.querySelector<HTMLButtonElement>("[data-forge3d-back]")?.addEventListener("click", () => setExploration(false));
+  if (window.location.hash === "#models") setExploration(true);
 
   document.querySelectorAll<HTMLButtonElement>("[data-copy]").forEach((button) => {
     button.addEventListener("click", async () => {

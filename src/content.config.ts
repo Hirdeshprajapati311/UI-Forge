@@ -14,6 +14,18 @@ const components = defineCollection({
   }),
 });
 
+const forge3d = defineCollection({
+  loader: glob({
+    pattern: "**/*.{md,mdx}",
+    base: "./src/content/forge3d",
+  }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+});
+
 export const collections = {
   components,
+  forge3d,
 };

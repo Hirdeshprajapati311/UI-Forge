@@ -516,6 +516,34 @@ body.theme-brand {
   height: 0.12rem;
 }
 
+.forge3d-nav-link,
+.forge3d-back-link {
+  color: var(--brand-muted, #91b1bd);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.forge3d-nav-link {
+  position: relative;
+}
+
+.forge3d-nav-link.is-active::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.75rem;
+  left: 0;
+  height: 0.12rem;
+  border-radius: 999px;
+  background: var(--brand-teal, #16b8bd);
+  content: "";
+  box-shadow: 0 0.1rem 0.55rem rgb(22 184 189 / 0.25);
+}
+
+.forge3d-nav-link:hover,
+.forge3d-back-link:hover {
+  color: var(--brand-ink, #e8fbff);
+}
+
 .spill-tabs-demo {
   padding: 1.25rem;
   border: 1px solid rgb(255 255 255 / 0.1);

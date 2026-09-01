@@ -18,7 +18,7 @@ export default function Forge3DExplorer() {
 
   return React.createElement(
     "section",
-    { className: "forge3d-explorer", "data-forge3d-exploration": true, "aria-labelledby": "forge3d-explorer-title" },
+    { id: "models", className: "forge3d-explorer", "data-forge3d-exploration": true, "aria-labelledby": "forge3d-explorer-title" },
     React.createElement(
       "div",
       { className: "forge3d-explorer-heading" },

@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../../layouts/Layout.astro";
+import CodeCopyButtons from "../../../components/docs/CodeCopyButtons.astro";
+
+export async function getStaticPaths() {
+  const docs = await getCollection("forge3d");
+  return docs.map((doc) => ({ params: { slug: doc.id }, props: { doc } }));
+}
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+---
+
+<Layout title={`${doc.data.title} | ForgeX3D`} description={doc.data.description}>
+  <article class="forge3d-doc-page">
+    <a href="/3d/models" class="forge3d-library-back">← Back to models</a>
+    <div class="docs-content forge3d-doc-content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<CodeCopyButtons />
+
+<style is:global>
+  .forge3d-doc-page { max-width: 56rem; margin: 0 auto; padding: 5rem 1.5rem 8rem; }
+  .forge3d-doc-content { margin-top: 3rem; padding: 2rem; border: 1px solid rgb(255 255 255 / .1); border-radius: 1.2rem; background: rgb(255 255 255 / .025); }
+  @media (min-width: 640px) { .forge3d-doc-content { padding: 3.5rem; } }
+</style>

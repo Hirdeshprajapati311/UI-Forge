@@ -1,0 +1,56 @@
+---
+title: Forge Orb
+description: A procedural 3D surface shaped by light, motion, and your point of view.
+---
+
+# Forge Orb
+
+Forge Orb is a procedural abstract object for interactive interface scenes. It uses a deformed icosphere, controlled lighting, and a restrained cyan-blue material to create depth without relying on an external model file.
+
+## Installation
+
+```bash
+npx forgexui add forge-orb
+```
+
+Install the ForgeX3D runtime dependencies if your project does not already include them:
+
+```bash
+npm install three @react-three/fiber @react-three/drei
+```
+
+## Usage
+
+```tsx
+import { Forge3DCanvas, Forge3DScene } from "@/components/forge3d/core";
+import ForgeOrb from "@/components/forge3d/elements/ForgeOrb";
+
+export function OrbScene() {
+  return (
+    <Forge3DCanvas>
+      <Forge3DScene>
+        <ForgeOrb
+          size={1}
+          rotationSpeed={0.2}
+          distortion={0.25}
+          interactive
+        />
+      </Forge3DScene>
+    </Forge3DCanvas>
+  );
+}
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+| --- | --- | --- | --- |
+| `size` | `number` | `1` | Radius of the orb |
+| `rotationSpeed` | `number` | `0.2` | Continuous rotation speed |
+| `distortion` | `number` | `0.16` | Amount of procedural surface variation |
+| `interactive` | `boolean` | `true` | Respond to the pointer position |
+| `reducedMotion` | `boolean` | `false` | Disables continuous movement when enabled |
+
+## About
+
+Forge Orb is the first element in the ForgeX3D model library. Shared canvas and scene infrastructure stays separate from the object so future models can use the same foundation.

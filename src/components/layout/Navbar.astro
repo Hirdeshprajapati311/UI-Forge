@@ -2,14 +2,17 @@
 import SpillTabs from "../ui/SpillTabs";
 
 const activePath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
+const isForge3D = Astro.url.pathname.startsWith("/3d");
+const isForge3DModels = Astro.url.pathname.startsWith("/3d/models");
+const isForge3DDocs = Astro.url.pathname.startsWith("/3d/docs");
 ---
 
 <header class="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/80 backdrop-blur-xl">
   <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
     <a
-      href="/"
+      href={isForge3D ? "/3d" : "/"}
       class="brand-link flex items-center gap-3 text-lg font-semibold tracking-tight text-white"
-      aria-label="UI Forge home"
+      aria-label={isForge3D ? "ForgeX3D home" : "UI Forge home"}
     >
       <img
         class="brand-mark"
@@ -19,21 +22,29 @@ const activePath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace
         alt=""
         aria-hidden="true"
       />
-      <span>UI Forge</span>
+      <span>{isForge3D ? "ForgeX3D" : "UI Forge"}</span>
     </a>
 
-    <SpillTabs
-      client:load
-      mode="navigation"
-      value={activePath}
-      className="hidden md:block"
-      items={[
-        { label: "Components", value: "/components", href: "/components" },
-        { label: "Docs", value: "/docs", href: "/docs" },
-        { label: "ForgeX3D", value: "/3d", href: "/3d" },
-        { label: "About", value: "/about", href: "/about" },
-      ]}
-    />
+    {isForge3D ? (
+      <div class="hidden items-center gap-6 text-sm md:flex">
+        <a href="/3d/models" class={`forge3d-nav-link${isForge3DModels ? " is-active" : ""}`}>Models</a>
+        <a href="/3d/docs" class={`forge3d-nav-link${isForge3DDocs ? " is-active" : ""}`}>Docs</a>
+        <a href="/" class="forge3d-back-link">UI Forge</a>
+      </div>
+    ) : (
+      <SpillTabs
+        client:load
+        mode="navigation"
+        value={activePath}
+        className="hidden md:block"
+        items={[
+          { label: "Components", value: "/components", href: "/components" },
+          { label: "Docs", value: "/docs", href: "/docs" },
+          { label: "ForgeX3D", value: "/3d", href: "/3d" },
+          { label: "About", value: "/about", href: "/about" },
+        ]}
+      />
+    )}
 
     <a
       href="https://github.com"

@@ -13,7 +13,7 @@ export interface Forge3DElementDefinition {
 // Add future elements here without changing the shared canvas or explorer layout.
 export const forge3DElements: Forge3DElementDefinition[] = [
   {
-    slug: "orb",
+    slug: "forge-orb",
     title: "Forge Orb",
     category: "Procedural 3D element",
     description: "A procedural surface shaped by light, motion, and your point of view.",
